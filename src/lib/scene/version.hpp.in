@@ -1,0 +1,21 @@
+// -*- Mode:C++ -*-
+
+/**************************************************************************************************/
+/*                                                                                                */
+/* Copyright (C) 2016 University of Hull                                                          */
+/*                                                                                                */
+/**************************************************************************************************/
+/*                                                                                                */
+/*  module     :  hugh/scene/version.hpp                                                          */
+/*  project    :                                                                                  */
+/*  description:                                                                                  */
+/*                                                                                                */
+/**************************************************************************************************/
+
+#if !defined(HUGH_SCENE_VERSION_HPP)
+
+#define HUGH_SCENE_VERSION_HPP
+
+#cmakedefine HUGH_SCENE_VERSION @HUGH_SCENE_VERSION@
+
+#endif // #if !defined(HUGH_SCENE_VERSION_HPP)
