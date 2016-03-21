@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/node_group.cpp                                                       */
+/*  module     :  hugh/scene/test/node_group.cpp                                                  */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <scene/node/group.hpp>
+#include <hugh/scene/node/group.hpp>
 
 // internal unnamed namespace
 
@@ -37,7 +37,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_node_group_ctor)
 {
-  using namespace scene::node;
+  using namespace hugh::scene::node;
   
   group const g;
   
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(test_scene_node_group_ctor)
 
 BOOST_AUTO_TEST_CASE(test_scene_node_group_add_child)
 {
-  using namespace scene::node;
+  using namespace hugh::scene::node;
   
   boost::intrusive_ptr<group> g(new group);
 
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(test_scene_node_group_add_child)
 
 BOOST_AUTO_TEST_CASE(test_scene_node_group_set_children)
 {
-  using namespace scene::node;
+  using namespace hugh::scene::node;
   
   group  g0;
   group* g1(new group);

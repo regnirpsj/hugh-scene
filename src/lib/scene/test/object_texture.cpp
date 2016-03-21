@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/obects_texture.cpp                                                   */
+/*  module     :  hugh/scene/test/obects_texture.cpp                                              */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -20,12 +20,12 @@
 
 // includes, project
 
-#include <scene/object/textures.hpp>
-#include <support/type_info.hpp>
+#include <hugh/scene/object/textures.hpp>
+#include <hugh/support/type_info.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -48,7 +48,7 @@ namespace {
     }
   };
 
-  std::array<std::string const, 75> const file_list_d2 = {
+  std::array<std::string const, 74> const file_list_d2 = {
     {
       prefix + "/data/kueken7_a8_unorm.dds",
       // prefix + "/data/kueken7_bgr8_srgb.dds",
@@ -85,7 +85,7 @@ namespace {
       prefix + "/data/kueken7_rgb9e5_ufloat.dds",
       prefix + "/data/kueken7_rgb9e5_ufloat.ktx",
       prefix + "/data/kueken7_rgb_atc_unorm.dds",
-      prefix + "/data/kueken7_rgb_dxt1_srgb.dds",
+      // prefix + "/data/kueken7_rgb_dxt1_srgb.dds",
       prefix + "/data/kueken7_rgb_dxt1_srgb.ktx",
       prefix + "/data/kueken7_rgb_dxt1_unorm.ktx",
       prefix + "/data/kueken7_rgb_etc1_unorm.dds",
@@ -149,11 +149,11 @@ namespace {
 
   std::unordered_map<std::type_info const*, std::vector<std::string>> file_map = {
     {
-      std::make_pair(&typeid(scene::object::texture::d1),
+      std::make_pair(&typeid(hugh::scene::object::texture::d1),
                      std::vector<std::string>(file_list_d1.begin(), file_list_d1.end())),
-      std::make_pair(&typeid(scene::object::texture::d2),
+      std::make_pair(&typeid(hugh::scene::object::texture::d2),
                      std::vector<std::string>(file_list_d2.begin(), file_list_d2.end())),
-      std::make_pair(&typeid(scene::object::texture::d3),
+      std::make_pair(&typeid(hugh::scene::object::texture::d3),
                      std::vector<std::string>(file_list_d3.begin(), file_list_d3.end())),
     }
   };
@@ -167,16 +167,16 @@ namespace {
 #include <boost/test/test_case_template.hpp>
 #include <boost/mpl/list.hpp>
 
-typedef boost::mpl::list<scene::object::texture::d1,
-                         scene::object::texture::d2,
-                         scene::object::texture::d3> tex_types;
+typedef boost::mpl::list<hugh::scene::object::texture::d1,
+                         hugh::scene::object::texture::d2,
+                         hugh::scene::object::texture::d3> tex_types;
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_fill, T, tex_types)
 {
   T const t;
 
   BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(support::demangle(typeid(T)) << ':' << t);
+  BOOST_TEST_MESSAGE(hugh::support::demangle(typeid(T)) << ':' << t);
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_file, T, tex_types)
@@ -185,6 +185,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_file, T, tex_types)
     T const t(f);
 
     BOOST_CHECK       (!t.empty());
-    BOOST_TEST_MESSAGE(support::demangle(typeid(T)) << ':' << t);
+    BOOST_TEST_MESSAGE(hugh::support::demangle(typeid(T)) << ':' << t);
   }
 }

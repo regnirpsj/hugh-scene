@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/node_rotor.cpp                                                       */
+/*  module     :  hugh/scene/test/node_rotor.cpp                                                  */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <scene/node/rotor.hpp>
+#include <hugh/scene/node/rotor.hpp>
 
 // internal unnamed namespace
 
@@ -37,7 +37,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_node_rotor_ctor)
 {
-  using namespace scene::node;
+  using namespace hugh::scene::node;
   
   rotor const r;
   

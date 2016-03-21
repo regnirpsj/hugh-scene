@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/file.cpp                                                             */
+/*  module     :  hugh/scene/test/file.cpp                                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -19,11 +19,11 @@
 
 // includes, project
 
-#include <scene/file.hpp>
+#include <hugh/scene/file.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -33,7 +33,7 @@ namespace {
 
   typedef std::tuple<std::string const,
                      std::string const,
-                     scene::node::group*> file_load_save_tuple_type;
+                     hugh::scene::node::group*> file_load_save_tuple_type;
 
   
   // variables, internal
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_scene_file_load, file_names.size())
 
 BOOST_AUTO_TEST_CASE(test_scene_file_load)
 {
-  using namespace scene::file;
+  using namespace hugh::scene::file;
 
   for (auto f : file_names) {
     std::string const& from(std::get<0>(f));
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_scene_file_save, file_names.size())
 
 BOOST_AUTO_TEST_CASE(test_scene_file_save)
 {
-  using namespace scene::file;
+  using namespace hugh::scene::file;
 
   for (auto f : file_names) {
     std::string const& to(std::get<1>(f));

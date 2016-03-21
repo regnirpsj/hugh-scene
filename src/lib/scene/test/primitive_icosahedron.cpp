@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/primitive_icosahedron.cpp                                            */
+/*  module     :  hugh/scene/test/primitive_icosahedron.cpp                                       */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,11 +18,11 @@
 
 // includes, project
 
-#include <scene/primitive/icosahedron.hpp>
+#include <hugh/scene/primitive/icosahedron.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -41,10 +41,10 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_primitive_icosahedron_ctor)
 {
-  using namespace scene::primitive;
+  using namespace hugh::scene::primitive;
   
-  icosahedron const c;
+  icosahedron const i;
   
   BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(c);
+  BOOST_TEST_MESSAGE(i);
 }

@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2015 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/loader_obj.cpp                                                       */
+/*  module     :  hugh/scene/test/loader_obj.cpp                                                  */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -20,9 +20,9 @@
 
 #include <loader/obj.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_obj_cube)
     str << s << '\n';
   }
   
-  BOOST_CHECK(nullptr != scene::file::obj::load(str));
+  BOOST_CHECK(nullptr != hugh::scene::file::obj::load(str));
 }
 
 BOOST_AUTO_TEST_CASE(test_scene_loader_obj_squares)
@@ -104,5 +104,5 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_obj_squares)
     str << s << '\n';
   }
   
-  BOOST_CHECK(nullptr != scene::file::obj::load(str));
+  BOOST_CHECK(nullptr != hugh::scene::file::obj::load(str));
 }

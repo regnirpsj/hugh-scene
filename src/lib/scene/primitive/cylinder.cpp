@@ -65,7 +65,7 @@ namespace hugh {
       /* explicit */
       cylinder::cylinder(unsigned a)
         : node::geometry(),
-          sides         (*this, "sides", std::max(unsigned(1), a))
+          sides         (*this, "sides", std::max(unsigned(3), a)) // TODO: make this an adapter
       {
         TRACE("hugh::scene::primitive::cylinder::cylinder");
       
@@ -85,10 +85,8 @@ namespace hugh {
       {
         TRACE("hugh::scene::primitive::cylinder::do_changed");
       
-        if (&f == &sides) {
-          sides = std::max(unsigned(1), *sides);
-        
-          make_cylinder(*sides, attribute_list_, index_list_);
+        if (&f == &sides) {        
+          make_cylinder(std::max(unsigned(3), *sides), attribute_list_, index_list_);
         
           compute_bounds();
           compute_tangents();

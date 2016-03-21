@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/visitor/test/visitor_print.cpp                                            */
+/*  module     :  hugh/scene/visitor/test/visitor_print.cpp                                       */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -19,14 +19,14 @@
 
 // includes, project
 
-#include <scene/node/group.hpp>
-#include <scene/visitor/print.hpp>
+#include <hugh/scene/node/group.hpp>
+#include <hugh/scene/visitor/print.hpp>
 
 #include <visitor_shared.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -34,7 +34,7 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  class simple_bfs : public scene::visitor::bfs {
+  class simple_bfs : public hugh::scene::visitor::bfs {
 
   public:
     
@@ -42,11 +42,11 @@ namespace {
 
   private:
 
-    virtual void visit(scene::visitor::subject&) { /* ... */ }
+    virtual void visit(hugh::scene::visitor::subject&) { /* ... */ }
     
   };
 
-  class simple_dfs : public scene::visitor::dfs {
+  class simple_dfs : public hugh::scene::visitor::dfs {
 
   public:
     
@@ -54,7 +54,7 @@ namespace {
 
   private:
 
-    virtual void visit(scene::visitor::subject&) { /* ... */ }
+    virtual void visit(hugh::scene::visitor::subject&) { /* ... */ }
     
   };
   
@@ -70,7 +70,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_bfs)
 {
-  using namespace scene;
+  using namespace hugh::scene;
   
   std::unique_ptr<node::group> g(test::make_scene());
   
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_bfs)
 
 BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_dfs)
 {
-  using namespace scene;
+  using namespace hugh::scene;
   
   std::unique_ptr<node::group> g(test::make_scene());
   
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_graph_bfs)
   
   {
     // needs to be in a scope to ensure bfs' dtor is run to flush
-    using namespace scene;
+    using namespace hugh::scene;
   
     std::unique_ptr<node::group> g(test::make_scene());
   
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_graph_dfs)
 {
   boost::test_tools::output_test_stream output;
   
-  using namespace scene;
+  using namespace hugh::scene;
   
   std::unique_ptr<node::group> g(test::make_scene());
   

@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2015 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/loader_mtl.cpp                                                       */
+/*  module     :  hugh/scene/test/loader_mtl.cpp                                                  */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -21,9 +21,9 @@
 
 #include <loader/mtl.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_size)
   }
 
   // 'mtl::load' returns list of materials + dflt material
-  BOOST_CHECK(materials.size() == scene::file::mtl::load(str).size());
+  BOOST_CHECK(materials.size() == hugh::scene::file::mtl::load(str).size());
 }
 
 BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_properties)
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_properties)
     str << m << '\n';
   }
 
-  using namespace scene::file;
+  using namespace hugh::scene::file;
 
   mtl::list_type const result(mtl::load(str));
   

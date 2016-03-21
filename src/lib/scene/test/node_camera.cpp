@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/node_camera.cpp                                                      */
+/*  module     :  hugh/scene/test/node_camera.cpp                                                 */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,8 +18,8 @@
 
 // includes, project
 
-#include <scene/node/camera.hpp>
-#include <scene/object/camera/orthographic.hpp>
+#include <hugh/scene/node/camera.hpp>
+#include <hugh/scene/object/camera/orthographic.hpp>
 
 // internal unnamed namespace
 
@@ -38,10 +38,10 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_node_camera_ctor)
 {
-  using namespace scene;
+  using namespace hugh::scene;
   
-  node::camera const m(new object::camera::orthographic);
+  node::camera const c(new object::camera::orthographic);
   
   BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(m);
+  BOOST_TEST_MESSAGE(c);
 }

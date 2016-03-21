@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/visitor/test/visitor_cull.cpp                                             */
+/*  module     :  hugh/scene/visitor/test/visitor_cull.cpp                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,15 +18,15 @@
 
 // includes, project
 
-#include <scene/nodes.hpp>
-#include <scene/objects.hpp>
-#include <scene/visitor/cull.hpp>
+#include <hugh/scene/nodes.hpp>
+#include <hugh/scene/objects.hpp>
+#include <hugh/scene/visitor/cull.hpp>
 
 #include <visitor_shared.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -46,7 +46,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_visitor_cull)
 {
-  using namespace scene;
+  using namespace hugh::scene;
   
   node::group* g(test::make_scene());
   

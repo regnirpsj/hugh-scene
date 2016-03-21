@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  field/test/objects_light.cpp                                                    */
+/*  module     :  hugh/scene/test/objects_light.cpp                                               */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <scene/objects.hpp>
+#include <hugh/scene/objects.hpp>
 
 // internal unnamed namespace
 
@@ -37,7 +37,9 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_object_light_base_rep)
 {
-  scene::object::light::base::rep const lr;
+  using namespace hugh::scene;
+  
+  object::light::base::rep const lr;
   
   BOOST_CHECK(false == lr.active);
   BOOST_TEST_MESSAGE("object_light_source_rep:" << lr << '\n');
@@ -45,7 +47,9 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_base_rep)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_light_directional)
 {
-  scene::object::light::directional const l;
+  using namespace hugh::scene;
+  
+  object::light::directional const l;
   
   BOOST_CHECK(false == *l.active);
   BOOST_TEST_MESSAGE(l << '\n');
@@ -53,7 +57,9 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_directional)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_light_positional)
 {
-  scene::object::light::positional const l;
+  using namespace hugh::scene;
+  
+  object::light::positional const l;
   
   BOOST_CHECK(false == *l.active);
   BOOST_TEST_MESSAGE(l << '\n');
@@ -61,7 +67,9 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_positional)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_light_spot)
 {
-  scene::object::light::spot const l;
+  using namespace hugh::scene;
+  
+  object::light::spot const l;
   
   BOOST_CHECK(false == *l.active);
   BOOST_TEST_MESSAGE(l << '\n');
@@ -69,7 +77,9 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_spot)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_light_area)
 {
-  scene::object::light::area l;
+  using namespace hugh::scene;
+  
+  object::light::area l;
 
   l.exponent.set(1);
   l.cutoff.  set(12.5);

@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  field/test/objects_camera.cpp                                                   */
+/*  module     :  hugh/scene/test/objects_camera.cpp                                              */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -19,7 +19,7 @@
 // includes, project
 
 #include <glm/gtx/utilities.hpp>
-#include <scene/objects.hpp>
+#include <hugh/scene/objects.hpp>
 
 // internal unnamed namespace
 
@@ -44,7 +44,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_object_camera_frustum)
 {
-  using namespace scene::object::camera;
+  using namespace hugh::scene::object::camera;
   
   frustum const f;
   
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_frustum)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_camera_viewport)
 {
-  using namespace scene::object::camera;
+  using namespace hugh::scene::object::camera;
   
   viewport const v;
   
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_viewport)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_camera_orthographic)
 {
-  using namespace scene::object::camera;
+  using namespace hugh::scene::object::camera;
   
   orthographic const oc(viewport(1, 1, 1599, 899));
   
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_orthographic)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective)
 {
-  using namespace scene::object::camera;
+  using namespace hugh::scene::object::camera;
   
   perspective const pc   (angle45deg, viewport(1, 1, 2879, 1799),
                           glm::vec2(frustum().near, 10));
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective)
 
 BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective_infty)
 {
-  using namespace scene::object::camera;
+  using namespace hugh::scene::object::camera;
 
   perspective const pc   (angle45deg, viewport(1, 1, 2879, 1799),
                           glm::vec2(frustum().near, std::numeric_limits<float>::infinity()));

@@ -134,7 +134,7 @@ namespace hugh {
       /* explicit */
       sphere::sphere(unsigned a)
         : node::geometry(),
-          subdivision   (*this, "subdivision", std::max(unsigned(1), a))
+          subdivision   (*this, "subdivision", a)
       {
         TRACE("hugh::scene::primitive::sphere::sphere");
 
@@ -154,9 +154,7 @@ namespace hugh {
       {
         TRACE("hugh::scene::primitive::do_changed");
       
-        if (&f == &subdivision) {
-          subdivision = std::max(unsigned(1), *subdivision);
-        
+        if (&f == &subdivision) {        
           attribute_list_.clear();
           index_list_    .clear();
 

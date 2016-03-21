@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/primitive_sphere.cpp                                                 */
+/*  module     :  hugh/scene/test/primitive_sphere.cpp                                            */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,11 +18,11 @@
 
 // includes, project
 
-#include <scene/primitive/sphere.hpp>
+#include <hugh/scene/primitive/sphere.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -41,7 +41,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_ctor)
 {
-  using namespace scene::primitive;
+  using namespace hugh::scene::primitive;
   
   sphere const c(0);
   
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_ctor)
 
 BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_subdiv)
 {
-  using namespace scene::primitive;
+  using namespace hugh::scene::primitive;
   
   sphere c(0);
 

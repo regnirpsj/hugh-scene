@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/visito_update_bounds.cpp                                             */
+/*  module     :  hugh/scene/test/visito_update_bounds.cpp                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,16 +18,16 @@
 
 // includes, project
 
-#include <scene/node/group.hpp>
-#include <scene/visitor/print.hpp>
-#include <scene/visitor/update_bounds.hpp>
-#include <support/chrono.hpp>
+#include <hugh/scene/node/group.hpp>
+#include <hugh/scene/visitor/print.hpp>
+#include <hugh/scene/visitor/update_bounds.hpp>
+#include <hugh/support/chrono.hpp>
 
 #include <visitor_shared.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_update_bounds)
 {
   boost::test_tools::output_test_stream output;
   
-  using namespace scene;
+  using namespace hugh::scene;
   
   node::group* g(test::make_scene());
   
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_update_bounds)
     
     output << "\n----- Executing BBox update " << std::string(96, '-') << '\n';
     
-    using namespace support;
+    using namespace hugh::support;
     using namespace std::chrono;
     
     timer const t;

@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/objects_material.cpp                                                 */
+/*  module     :  hugh/scene/test/objects_material.cpp                                            */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,11 +18,7 @@
 
 // includes, project
 
-#include <scene/object/material.hpp>
-
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#include <hugh/scene/object/material.hpp>
 
 // internal unnamed namespace
 
@@ -41,7 +37,7 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_object_material_ctor)
 {
-  using namespace scene::object;
+  using namespace hugh::scene::object;
   
   material const m;
   

@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014-2015 University of Hull                                                     */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/node_mesh.cpp                                                        */
+/*  module     :  hugh/scene/test/node_mesh.cpp                                                   */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <scene/node/mesh.hpp>
+#include <hugh/scene/node/mesh.hpp>
 
 // internal unnamed namespace
 
@@ -37,10 +37,12 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(test_scene_node_mesh_ctor)
 {
-  using namespace scene::node;
-  
-  //mesh const m;
+  using namespace hugh::scene::node;
+
+  mesh::attribute_list_type const a;
+  mesh::index_list_type const     i;
+  mesh const                      m(a, i);
   
   BOOST_CHECK       (true);
-  //BOOST_TEST_MESSAGE(m);
+  BOOST_TEST_MESSAGE(m);
 }

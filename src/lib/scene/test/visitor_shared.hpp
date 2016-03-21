@@ -2,19 +2,19 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2014 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/vistor_shared.hpp                                                    */
+/*  module     :  hugh/scene/test/vistor_shared.hpp                                               */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(UKACHULLDCS_08961_SCENE_TEST_VISTOR_SHARED_HPP)
+#if !defined(HUGH_SCENE_TEST_VISTOR_SHARED_HPP)
 
-#define UKACHULLDCS_08961_SCENE_TEST_VISTOR_SHARED_HPP
+#define HUGH_SCENE_TEST_VISTOR_SHARED_HPP
 
 // includes, system
 
@@ -24,28 +24,32 @@
 
 // #include <>
 
-namespace scene {
+namespace hugh {
+  
+  namespace scene {
 
-  namespace node {
+    namespace node {
 
-    class group;
+      class group;
     
-  } // namespace node {
+    } // namespace node {
+
+    namespace test {
   
-} // namespace scene {
+      // types, exported (class, enum, struct, union, typedef)
 
-namespace test {
+      // variables, exported (extern)
+
+      // functions, inlined (inline)
   
-  // types, exported (class, enum, struct, union, typedef)
+      // functions, exported (extern)
 
-  // variables, exported (extern)
+      node::group* make_scene();
 
-  // functions, inlined (inline)
-  
-  // functions, exported (extern)
+    } // namespace test {
 
-  scene::node::group* make_scene();
+  } // namespace scene {
 
-} // namespace test {
+} // namespace hugh {
 
-#endif // #if !defined(UKACHULLDCS_08961_SCENE_TEST_VISTOR_SHARED_HPP)
+#endif // #if !defined(HUGH_SCENE_TEST_VISTOR_SHARED_HPP)

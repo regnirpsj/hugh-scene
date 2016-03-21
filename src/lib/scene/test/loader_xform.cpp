@@ -2,11 +2,11 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2015 University of Hull                                                          */
+/* Copyright (C) 2016 University of Hull                                                          */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  scene/test/loader_xform.cpp                                                     */
+/*  module     :  hugh/scene/test/loader_xform.cpp                                                */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -19,11 +19,11 @@
 // includes, project
 
 #include <loader/xform.hpp>
-#include <scene/node/group.hpp>
+#include <hugh/scene/node/group.hpp>
 
-#define UKACHULLDCS_USE_TRACE
-#undef UKACHULLDCS_USE_TRACE
-#include <support/trace.hpp>
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -51,7 +51,7 @@ namespace {
 BOOST_AUTO_TEST_CASE(test_scene_loader_xform)
 {
   for (auto f : filenames) {
-    using namespace scene;
+    using namespace hugh::scene;
     
     boost::intrusive_ptr<node::group> g(file::xform::load(f));
     
