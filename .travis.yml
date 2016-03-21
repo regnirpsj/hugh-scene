@@ -1,0 +1,62 @@
+# -*- Mode: YAML -*-
+
+sudo: false # request container-base infrastructure
+language: cpp
+
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - george-edison55-precise-backports
+            - boost-latest
+          packages:
+            - cmake
+            - cmake-data
+            - git
+            - libboost1.55-all-dev
+            - g++-5
+      env:
+        - MATRIX_CC=gcc-5
+        - MATRIX_CXX=g++-5
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+            - george-edison55-precise-backports
+            - boost-latest
+          packages:
+            - cmake
+            - cmake-data
+            - git
+            - libboost1.55-all-dev
+            - clang-3.7
+      env:
+        - MATRIX_CC=clang-3.7
+        - MATRIX_CXX=clang++-3.7
+      
+script:
+  - export CC=$MATRIX_CC
+  - export CXX=$MATRIX_CXX
+  - mkdir extra && cd extra
+  - git clone http://github.com/g-truc/gli.git gli-git
+  - git clone http://github.com/g-truc/glm.git glm-git
+  - cd ..
+  - export GLI_ROOT_DIR=`pwd`/extra/gli-git
+  - export GLM_ROOT_DIR=`pwd`/extra/glm-git
+  - export HUGH_INSTALL_PREFIX=`pwd`/install
+  - cd extra
+  - git clone http://github.com/regnirpsj/hugh-support.git hugh-support
+  - cd hugh-support && mkdir build && cd build
+  - cmake -DVERBOSE=0 .. && cmake --build . --target install
+  - cd ../..
+  - git clone http://github.com/regnirpsj/hugh-fields.git hugh-fields
+  - cd hugh-fields && mkdir build && cd build
+  - cmake -DVERBOSE=0 .. && cmake --build . --target install
+  - cd ../../..
+  - mkdir build && cd build
+  - cmake -DVERBOSE=1 .. && cmake --build . --target test_all
