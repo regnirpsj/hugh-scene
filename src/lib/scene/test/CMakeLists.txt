@@ -8,7 +8,7 @@
 
 cma_print_current_directory()
 
-find_package(Boost ${BOOST_MINIMUM_VERSION} REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost ${BOOST_MINIMUM_VERSION} REQUIRED COMPONENTS unit_test_framework system)
 
 include_directories(SYSTEM ${Boost_INLCUDE_DIR})
 include_directories(       ${CMAKE_CURRENT_SOURCE_DIR})
@@ -38,6 +38,8 @@ LIST(APPEND SRC "primitive_icosahedron.cpp")
 LIST(APPEND SRC "primitive_octahedron.cpp")
 LIST(APPEND SRC "primitive_sphere.cpp")
 LIST(APPEND SRC "primitive_tetrahedron.cpp")
+
+add_definitions("-DGLI_ROOT_DIR=${GLI_ROOT_DIR}")
 
 set(LIBS)
 list(APPEND LIBS ${LIB})

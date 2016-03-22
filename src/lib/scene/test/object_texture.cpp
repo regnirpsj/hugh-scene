@@ -14,9 +14,11 @@
 
 // includes, system
 
-#include <array>         // std::array<>
-#include <typeinfo>      // typeid usage
-#include <unordered_map> // std::unordered_map<>
+#include <array>                            // std::array<>
+#include <boost/filesystem.hpp>             // boost::filesystem::exists
+#include <boost/preprocessor/stringize.hpp> // BOOST_PP_STRINGIZE
+#include <typeinfo>                         // typeid usage
+#include <unordered_map>                    // std::unordered_map<>
 
 // includes, project
 
@@ -34,11 +36,10 @@ namespace {
   // types, internal (class, enum, struct, union, typedef)
 
   // variables, internal
-  
-#if defined(WIN32)
-  std::string const prefix("c:/tools/gli/gli-git");
+#if defined(GLI_ROOT_DIR)
+  std::string const prefix(BOOST_PP_STRINGIZE(GLI_ROOT_DIR));
 #else
-  std::string const prefix("/home/jsd/Projects/others/gli-git");
+  std::string const prefix;
 #endif
   
   std::array<std::string const, 1> const file_list_d1 = {
@@ -181,10 +182,15 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_fill, T, tex_types)
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_file, T, tex_types)
 {
-  for (auto const& f : file_map[&typeid(T)]) {
-    T const t(f);
-
-    BOOST_CHECK       (!t.empty());
-    BOOST_TEST_MESSAGE(hugh::support::demangle(typeid(T)) << ':' << t);
+  if (boost::filesystem::exists(prefix)) {
+    for (auto const& f : file_map[&typeid(T)]) {
+      T const t(f);
+      
+      BOOST_CHECK       (!t.empty());
+      BOOST_TEST_MESSAGE(hugh::support::demangle(typeid(T)) << ':' << t);
+    }
+  } else {
+    BOOST_CHECK(true);
+    BOOST_TEST_MESSAGE("GLI_ROOT_DIR invalid ('" << prefix << "')");
   }
 }
