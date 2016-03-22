@@ -45,7 +45,9 @@ namespace hugh {
           virtual ~d2();
 
           virtual bool empty() const;
-      
+
+          virtual void print_on(std::ostream&) const;
+          
         private:
 
           gli::texture2d tdata_;

@@ -45,7 +45,9 @@ namespace hugh {
           virtual ~d1();
 
           virtual bool empty() const;
-      
+
+          virtual void print_on(std::ostream&) const;
+          
         private:
 
           gli::texture1d tdata_;

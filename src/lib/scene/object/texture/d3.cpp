@@ -18,10 +18,11 @@
 
 // includes, system
 
-//#include <>
+#include <ostream> // std::ostream
 
 // includes, project
 
+#include <gli/gtx/io.hpp>
 #include <object/texture/fill.hpp>
 #include <object/texture/load.hpp>
 
@@ -89,6 +90,18 @@ namespace hugh {
           return tdata_.empty();
         }
       
+        /* virtual */ void
+        d3::print_on(std::ostream& os) const
+        {
+          TRACE_NEVER("hugh::scene::object::d3::print_on");
+
+          base::print_on(os);
+
+          os << ','
+             << tdata_
+             << ']';
+        }
+
       } // namespace texture {
 
     } // namespace object {
