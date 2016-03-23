@@ -35,7 +35,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_node_transform_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_node_transform_ctor)
 {
   using namespace hugh::scene::node;
   

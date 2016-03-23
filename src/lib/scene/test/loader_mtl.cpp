@@ -167,7 +167,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_size)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_mtl_size)
 {
   std::stringstream str;
 
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_size)
   BOOST_CHECK(materials.size() == hugh::scene::file::mtl::load(str).size());
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_loader_mtl_properties)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_mtl_properties)
 {
   std::stringstream str;
 

@@ -35,7 +35,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_object_light_base_rep)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_base_rep)
 {
   using namespace hugh::scene;
   
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_base_rep)
   BOOST_TEST_MESSAGE("object_light_source_rep:" << lr << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_light_directional)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
 {
   using namespace hugh::scene;
   
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_directional)
   BOOST_TEST_MESSAGE(l << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_light_positional)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 {
   using namespace hugh::scene;
   
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_positional)
   BOOST_TEST_MESSAGE(l << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_light_spot)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
 {
   using namespace hugh::scene;
   
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_light_spot)
   BOOST_TEST_MESSAGE(l << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_light_area)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 {
   using namespace hugh::scene;
   

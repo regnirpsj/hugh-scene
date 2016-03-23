@@ -68,7 +68,7 @@ namespace {
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output_test_stream.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_bfs)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_simple_bfs)
 {
   using namespace hugh::scene;
   
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_bfs)
   g->accept(v);
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_dfs)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_simple_dfs)
 {
   using namespace hugh::scene;
   
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_simple_dfs)
   
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_visitor_print_graph_bfs)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_graph_bfs)
 {
   boost::test_tools::output_test_stream output;
   
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(test_scene_visitor_print_graph_bfs)
   BOOST_TEST_MESSAGE(output.str());
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_visitor_print_graph_dfs)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_graph_dfs)
 {
   boost::test_tools::output_test_stream output;
   

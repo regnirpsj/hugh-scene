@@ -55,9 +55,9 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_scene_file_load, file_names.size())
+BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_hugh_scene_file_load, file_names.size())
 
-BOOST_AUTO_TEST_CASE(test_scene_file_load)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_file_load)
 {
   using namespace hugh::scene::file;
 
@@ -69,9 +69,9 @@ BOOST_AUTO_TEST_CASE(test_scene_file_load)
   }
 }
 
-BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_scene_file_save, file_names.size())
+BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES(test_hugh_scene_file_save, file_names.size())
 
-BOOST_AUTO_TEST_CASE(test_scene_file_save)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_file_save)
 {
   using namespace hugh::scene::file;
 

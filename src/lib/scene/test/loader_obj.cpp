@@ -85,7 +85,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_loader_obj_cube)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_cube)
 {
   std::stringstream str;
 
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(test_scene_loader_obj_cube)
   BOOST_CHECK(nullptr != hugh::scene::file::obj::load(str));
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_loader_obj_squares)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_squares)
 {
   std::stringstream str;
 

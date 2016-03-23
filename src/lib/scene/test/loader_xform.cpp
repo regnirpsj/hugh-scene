@@ -48,7 +48,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_loader_xform)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_xform)
 {
   for (auto f : filenames) {
     using namespace hugh::scene;

@@ -172,7 +172,7 @@ typedef boost::mpl::list<hugh::scene::object::texture::d1,
                          hugh::scene::object::texture::d2,
                          hugh::scene::object::texture::d3> tex_types;
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_fill, T, tex_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_scene_object_texture_ctor_fill, T, tex_types)
 {
   T const t;
 
@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_fill, T, tex_types)
   BOOST_TEST_MESSAGE(hugh::support::demangle(typeid(T)) << ':' << t);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_scene_object_texture_ctor_file, T, tex_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_scene_object_texture_ctor_file, T, tex_types)
 {
   if (boost::filesystem::exists(prefix)) {
     for (auto const& f : file_map[&typeid(T)]) {

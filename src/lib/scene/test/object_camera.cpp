@@ -42,7 +42,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_object_camera_frustum)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_frustum)
 {
   using namespace hugh::scene::object::camera;
   
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_frustum)
   BOOST_TEST_MESSAGE("scene::object::camera::frustum: " << f << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_camera_viewport)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_viewport)
 {
   using namespace hugh::scene::object::camera;
   
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_viewport)
   BOOST_TEST_MESSAGE("scene::object::camera::viewport: " << v << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_camera_orthographic)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_orthographic)
 {
   using namespace hugh::scene::object::camera;
   
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_orthographic)
   BOOST_TEST_MESSAGE(oc << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective)
 {
   using namespace hugh::scene::object::camera;
   
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective)
   BOOST_TEST_MESSAGE(glm::io::precision(4) << pc << '\n');
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_object_camera_perspective_infty)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective_infty)
 {
   using namespace hugh::scene::object::camera;
 

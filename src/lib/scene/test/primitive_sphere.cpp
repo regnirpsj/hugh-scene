@@ -39,7 +39,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_ctor)
 {
   using namespace hugh::scene::primitive;
   
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_ctor)
   BOOST_TEST_MESSAGE(c);
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_primitive_sphere_subdiv)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_subdiv)
 {
   using namespace hugh::scene::primitive;
   

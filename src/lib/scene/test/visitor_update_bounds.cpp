@@ -47,7 +47,7 @@ namespace {
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output_test_stream.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_visitor_update_bounds)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_update_bounds)
 {
   boost::test_tools::output_test_stream output;
   

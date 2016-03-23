@@ -35,7 +35,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_scene_node_group_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_node_group_ctor)
 {
   using namespace hugh::scene::node;
   
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(test_scene_node_group_ctor)
   BOOST_TEST_MESSAGE(glm::io::precision(1) << glm::io::width(1 + 1 + 1 + 1) << g);
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_node_group_add_child)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_node_group_add_child)
 {
   using namespace hugh::scene::node;
   
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_scene_node_group_add_child)
   BOOST_CHECK(true == g->children.get().empty());
 }
 
-BOOST_AUTO_TEST_CASE(test_scene_node_group_set_children)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_node_group_set_children)
 {
   using namespace hugh::scene::node;
   
