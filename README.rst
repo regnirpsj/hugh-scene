@@ -4,6 +4,8 @@ Hull University Graphics Helper (HUGH) Scene Graph
 
 .. image:: https://travis-ci.org/regnirpsj/hugh-scene.svg?branch=master
    :target: https://travis-ci.org/regnirpsj/hugh-scene
+.. image:: https://coveralls.io/repos/github/regnirpsj/hugh-scene/badge.svg?branch=master
+   :target: https://coveralls.io/github/regnirpsj/hugh-scene?branch=master
 
 :Author: Jan P Springer <regnirpsj@gmail.com>
 
