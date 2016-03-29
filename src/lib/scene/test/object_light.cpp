@@ -58,7 +58,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_base_rep)
   BOOST_CHECK(!ostr.str().empty());
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
 {
   using namespace hugh::scene;
@@ -93,6 +92,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
   }
 }
 
+#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 {
   using namespace hugh::scene;
