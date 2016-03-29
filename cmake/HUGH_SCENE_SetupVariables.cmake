@@ -11,5 +11,3 @@ if(VERBOSE)
 endif()
 
 include(CMakeAddons_SetupVariables)
-
-set(${PROJECT_NAME}_COVERAGE_EXCLUDE "${${PROJECT_NAME}_COVERAGE_EXCLUDE} 'install/*'")
