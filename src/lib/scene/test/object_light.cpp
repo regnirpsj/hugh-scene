@@ -16,7 +16,6 @@
 
 #include <glm/gtx/io.hpp> // glm::operator<<
 #include <limits>         // std::numeric_limits<>
-#include <sstream>        // std::ostringstream
 
 // includes, project
 
@@ -58,7 +57,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_base_rep)
   BOOST_CHECK(!ostr.str().empty());
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
 {
   using namespace hugh::scene;
@@ -114,7 +112,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.position);
   }
 }
-#endif
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
 {
@@ -143,7 +140,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
   }
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 {
   using namespace hugh::scene;
@@ -167,4 +163,3 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
     BOOST_CHECK(glm::uvec2(4, 4) == *l.samples);
   }
 }
-#endif
