@@ -92,7 +92,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
     BOOST_CHECK(glm::vec3(1,1,1) == *l.attenuation);
   }
 }
-#endif
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 {
@@ -115,8 +114,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.position);
   }
 }
+#endif
 
-#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
 {
   using namespace hugh::scene;
@@ -144,6 +143,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
   }
 }
 
+#if 0
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 {
   using namespace hugh::scene;
