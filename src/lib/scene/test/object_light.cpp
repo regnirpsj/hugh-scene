@@ -55,8 +55,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_base_rep)
 
   ostr << lr;
 
-  BOOST_CHECK       (!ostr.str().empty());
-  BOOST_TEST_MESSAGE(ostr.str());
+  BOOST_CHECK(!ostr.str().empty());
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
@@ -66,22 +65,16 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
   {
     object::light::directional const l;
 
-    BOOST_TEST_MESSAGE(l);
-    
     BOOST_CHECK(false             == *l.active);
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.direction);
     BOOST_CHECK(glm::vec3(0,0, 0) == *l.ambient);
     BOOST_CHECK(glm::vec3(1,1, 1) == *l.diffuse);
     BOOST_CHECK(glm::vec3(1,1, 1) == *l.specular);
     BOOST_CHECK(glm::vec3(1,0, 0) == *l.attenuation);
-
-    BOOST_TEST_MESSAGE(l);
   }
 
   {
     object::light::directional l;
-
-    BOOST_TEST_MESSAGE(l);
     
     l.active      = true;
     l.direction   = glm::vec3(0,0,1);
@@ -90,16 +83,12 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
     l.specular    = glm::vec3(0,0,0);
     l.attenuation = glm::vec3(1,1,1);
 
-    BOOST_TEST_MESSAGE(l);
-    
     BOOST_CHECK(true             == *l.active);
     BOOST_CHECK(glm::vec3(0,0,1) == *l.direction);
     BOOST_CHECK(glm::vec3(1,1,1) == *l.ambient);
     BOOST_CHECK(glm::vec3(0,0,0) == *l.diffuse);
     BOOST_CHECK(glm::vec3(0,0,0) == *l.specular);
     BOOST_CHECK(glm::vec3(1,1,1) == *l.attenuation);
-
-    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -110,28 +99,18 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
   {
     object::light::positional const l;
 
-    BOOST_TEST_MESSAGE(l);
-    
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::vec3(0,0,1) == *l.position);
-
-    BOOST_TEST_MESSAGE(l);
   }
 
   {
     object::light::positional l;
-
-    BOOST_TEST_MESSAGE(l);
     
     l.active   = true;
     l.position = glm::vec3(0,0,-1);
 
-    BOOST_TEST_MESSAGE(l);
-    
     BOOST_CHECK(true              == *l.active);
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.position);
-
-    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -143,32 +122,22 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
   
   {
     object::light::spot const l;
-
-    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false == *l.active);
     BOOST_CHECK(0.0   == *l.exponent);
     BOOST_CHECK(eps   >   (glm::radians(180.0) - *l.cutoff));
-
-    BOOST_TEST_MESSAGE(l);
   }
 
   {
     object::light::spot l;
-
-    BOOST_TEST_MESSAGE(l);
     
     l.active   = true;
     l.exponent = 64.0;
     l.cutoff   = glm::radians(45.0);
-
-    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(true  == *l.active);
     BOOST_CHECK(64.0  == *l.exponent);
     BOOST_CHECK(eps   >   (glm::radians(45.0) == *l.cutoff));
-
-    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -178,30 +147,20 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 
   {
     object::light::area const l;
-
-    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(0, 0) == *l.size);
     BOOST_CHECK(glm::uvec2(1, 1) == *l.samples);
-
-    BOOST_TEST_MESSAGE(l);
   }
 
   {
     object::light::area l;
-
-    BOOST_TEST_MESSAGE(l);
     
     l.size    = glm::uvec2(2, 2);
     l.samples = glm::uvec2(4, 4);
-
-    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(2, 2) == *l.size);
     BOOST_CHECK(glm::uvec2(4, 4) == *l.samples);
-
-    BOOST_TEST_MESSAGE(l);
   }
 }
