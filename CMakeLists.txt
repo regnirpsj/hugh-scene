@@ -28,6 +28,7 @@ cma_print_current_directory()
 
 include(SetupCompilerDefaults)
 include(SetupProjectDefaults)
+include(SetupCoverage)
 include(SetupUnitTests)
 
 include_directories(${CMAKE_SOURCE_DIR}/inc)
