@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_ctor)
   
   sphere const c(0);
   
-  BOOST_CHECK       (true);
+  BOOST_CHECK       (0 == *c.subdivision);
   BOOST_TEST_MESSAGE(c);
 }
 
@@ -55,9 +55,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_subdiv)
   
   sphere c(0);
 
-  BOOST_TEST_MESSAGE(c);
-  
-  for (unsigned i(4); i < 9; ++i) {
+  for (unsigned i(4); i < 8; ++i) {
     c.subdivision = i;
   
     BOOST_CHECK(i == *c.subdivision);

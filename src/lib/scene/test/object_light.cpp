@@ -55,7 +55,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_base_rep)
 
   ostr << lr;
 
-  BOOST_CHECK(!ostr.str().empty());
+  BOOST_CHECK       (!ostr.str().empty());
+  BOOST_TEST_MESSAGE(ostr.str());
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
@@ -71,6 +72,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
     BOOST_CHECK(glm::vec3(1,1, 1) == *l.diffuse);
     BOOST_CHECK(glm::vec3(1,1, 1) == *l.specular);
     BOOST_CHECK(glm::vec3(1,0, 0) == *l.attenuation);
+
+    BOOST_TEST_MESSAGE(l);
   }
 
   {
@@ -89,6 +92,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
     BOOST_CHECK(glm::vec3(0,0,0) == *l.diffuse);
     BOOST_CHECK(glm::vec3(0,0,0) == *l.specular);
     BOOST_CHECK(glm::vec3(1,1,1) == *l.attenuation);
+
+    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -101,6 +106,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::vec3(0,0,1) == *l.position);
+
+    BOOST_TEST_MESSAGE(l);
   }
 
   {
@@ -111,6 +118,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 
     BOOST_CHECK(true              == *l.active);
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.position);
+
+    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -126,6 +135,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
     BOOST_CHECK(false == *l.active);
     BOOST_CHECK(0.0   == *l.exponent);
     BOOST_CHECK(eps   >   (glm::radians(180.0) - *l.cutoff));
+
+    BOOST_TEST_MESSAGE(l);
   }
 
   {
@@ -138,6 +149,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
     BOOST_CHECK(true  == *l.active);
     BOOST_CHECK(64.0  == *l.exponent);
     BOOST_CHECK(eps   >   (glm::radians(45.0) == *l.cutoff));
+
+    BOOST_TEST_MESSAGE(l);
   }
 }
 
@@ -151,6 +164,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(0, 0) == *l.size);
     BOOST_CHECK(glm::uvec2(1, 1) == *l.samples);
+
+    BOOST_TEST_MESSAGE(l);
   }
 
   {
@@ -162,5 +177,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(2, 2) == *l.size);
     BOOST_CHECK(glm::uvec2(4, 4) == *l.samples);
+
+    BOOST_TEST_MESSAGE(l);
   }
 }
