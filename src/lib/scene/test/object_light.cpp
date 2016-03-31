@@ -80,6 +80,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
 
   {
     object::light::directional l;
+
+    BOOST_TEST_MESSAGE(l);
     
     l.active      = true;
     l.direction   = glm::vec3(0,0,1);
@@ -118,6 +120,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
 
   {
     object::light::positional l;
+
+    BOOST_TEST_MESSAGE(l);
     
     l.active   = true;
     l.position = glm::vec3(0,0,-1);
@@ -151,6 +155,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
 
   {
     object::light::spot l;
+
+    BOOST_TEST_MESSAGE(l);
     
     l.active   = true;
     l.exponent = 64.0;
@@ -184,6 +190,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 
   {
     object::light::area l;
+
+    BOOST_TEST_MESSAGE(l);
     
     l.size    = glm::uvec2(2, 2);
     l.samples = glm::uvec2(4, 4);
