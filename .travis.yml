@@ -60,18 +60,22 @@ before_script:
   - export PATH=${TRAVIS_BUILD_DIR}/install/usr/bin:${PATH}
   - lcov --version
   - gem install coveralls-lcov
-  - export HUGH_SUPPORT_ROOT_DIR=${TRAVIS_BUILD_DIR}/extra/hugh-support
-  - git clone --depth 1 http://github.com/regnirpsj/hugh-support.git ${HUGH_SUPPORT_ROOT_DIR}
-  - export FETCHREPO=${HUGH_SUPPORT_ROOT_DIR}/share/hugh/travis.ci/fetch-or-update-git-repo.sh
+  - export HUGH_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
+  - export HUGH_BUILDSYS_ROOT_DIR=${TRAVIS_BUILD_DIR}/extra/hugh-build-system
+  - git clone --depth 1 http://github.com/regnirpsj/hugh-build-system.git ${HUGH_BUILDSYS_ROOT_DIR}
+  - cd ${HUGH_BUILDSYS_ROOT_DIR} && mkdir build && cd build
+  - cmake .. && cmake --build . --target install
+  - export FETCHREPO=${HUGH_INSTALL_PREFIX}/share/hugh/travis.ci/fetch-or-update-git-repo.sh
   - export GLI_ROOT_DIR=${HOME}/extra/gli-git
   - export GLM_ROOT_DIR=${HOME}/extra/glm-git
   - ${FETCHREPO} http://github.com/g-truc/gli.git ${GLI_ROOT_DIR}
   - ${FETCHREPO} http://github.com/g-truc/glm.git ${GLM_ROOT_DIR}
+  - export HUGH_SUPPORT_ROOT_DIR=${TRAVIS_BUILD_DIR}/extra/hugh-support
+  - ${FETCHREPO} http://github.com/regnirpsj/hugh-support.git ${HUGH_SUPPORT_ROOT_DIR}
   - cd ${HUGH_SUPPORT_ROOT_DIR} && mkdir build && cd build
-  - export HUGH_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
   - cmake .. && cmake --build . --target install
   - export HUGH_FIELDS_ROOT_DIR=${TRAVIS_BUILD_DIR}/extra/hugh-fields
-  - git clone --depth 1 http://github.com/regnirpsj/hugh-fields.git ${HUGH_FIELDS_ROOT_DIR}
+  - ${FETCHREPO} http://github.com/regnirpsj/hugh-fields.git ${HUGH_FIELDS_ROOT_DIR}
   - cd ${HUGH_FIELDS_ROOT_DIR} && mkdir build && cd build
   - cmake .. && cmake --build . --target install
   - mkdir ${TRAVIS_BUILD_DIR}/build
@@ -79,8 +83,7 @@ before_script:
 script:
   - cd ${TRAVIS_BUILD_DIR}/build
   - cmake -DVERBOSE=1 -DHUGH_SCENE_COVERAGE=1 ..
-  - cmake --build . --target coverage_zero
-  - cmake --build . --target test_all
+  - cmake --build . --target test_coverage
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}/build
