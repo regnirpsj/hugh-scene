@@ -66,6 +66,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
   {
     object::light::directional const l;
 
+    BOOST_TEST_MESSAGE(l);
+    
     BOOST_CHECK(false             == *l.active);
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.direction);
     BOOST_CHECK(glm::vec3(0,0, 0) == *l.ambient);
@@ -86,6 +88,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_directional)
     l.specular    = glm::vec3(0,0,0);
     l.attenuation = glm::vec3(1,1,1);
 
+    BOOST_TEST_MESSAGE(l);
+    
     BOOST_CHECK(true             == *l.active);
     BOOST_CHECK(glm::vec3(0,0,1) == *l.direction);
     BOOST_CHECK(glm::vec3(1,1,1) == *l.ambient);
@@ -104,6 +108,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
   {
     object::light::positional const l;
 
+    BOOST_TEST_MESSAGE(l);
+    
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::vec3(0,0,1) == *l.position);
 
@@ -116,6 +122,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_positional)
     l.active   = true;
     l.position = glm::vec3(0,0,-1);
 
+    BOOST_TEST_MESSAGE(l);
+    
     BOOST_CHECK(true              == *l.active);
     BOOST_CHECK(glm::vec3(0,0,-1) == *l.position);
 
@@ -131,6 +139,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
   
   {
     object::light::spot const l;
+
+    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false == *l.active);
     BOOST_CHECK(0.0   == *l.exponent);
@@ -145,6 +155,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_spot)
     l.active   = true;
     l.exponent = 64.0;
     l.cutoff   = glm::radians(45.0);
+
+    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(true  == *l.active);
     BOOST_CHECK(64.0  == *l.exponent);
@@ -160,6 +172,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
 
   {
     object::light::area const l;
+
+    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(0, 0) == *l.size);
@@ -173,6 +187,8 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_light_area)
     
     l.size    = glm::uvec2(2, 2);
     l.samples = glm::uvec2(4, 4);
+
+    BOOST_TEST_MESSAGE(l);
     
     BOOST_CHECK(false            == *l.active);
     BOOST_CHECK(glm::uvec2(2, 2) == *l.size);
