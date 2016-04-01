@@ -33,6 +33,7 @@ include(SetupUnitTests)
 include_directories(${CMAKE_SOURCE_DIR}/inc)
 include_directories(${CMAKE_BINARY_DIR}/exports)
 
+add_subdirectory(share)
 add_subdirectory(src)
 
 include(ShowConfigSummary)
