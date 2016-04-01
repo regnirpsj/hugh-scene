@@ -482,14 +482,14 @@ namespace hugh {
                   for (unsigned i(std::get<1>(o)); i < (std::get<1>(o) + std::get<2>(o)); ++i) {
                     using support::ostream::operator<<;
                 
-                    std::cout << "f[" << i << "]  :" << face_list[i] << "\n"
+                    std::cout << "f[" << i << "]  :" << face_list[i] << '\n'
                               << "f[" << i << "].v:";
 
                     for (auto const& f : face_list[i]) {
                       std::cout << vertex_list[f.x - 1] << ',';
                     }
 
-                    std::cout << "\b\n"
+                    std::cout << support::ostream::remove(1) << '\n'
                               << "f[" << i << "].t:";
 
                     for (auto const& f : face_list[i]) {
@@ -498,7 +498,7 @@ namespace hugh {
                       }
                     }
                 
-                    std::cout << "\b\n"
+                    std::cout << support::ostream::remove(1) << '\n'
                               << "f[" << i << "].n:";
 
                     for (auto const& f : face_list[i]) {
@@ -507,7 +507,7 @@ namespace hugh {
                       }
                     }
                 
-                    std::cout << "\b\n\n";
+                    std::cout << support::ostream::remove(1) << "\n\n";
                   }
                 }
 #endif
