@@ -15,6 +15,7 @@
 // includes, system
 
 #include <glm/gtx/io.hpp> // glm::operator<<
+#include <sstream>        // std::ostringstream
 
 // includes, project
 
@@ -52,7 +53,14 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_frustum)
   BOOST_CHECK(0.0 == (f.top   + f.bottom));
   BOOST_CHECK( f.contains(glm::vec3(0.0f, 0.0f, 2.0 * f.near)));
   BOOST_CHECK(!f.contains(glm::vec3(2.0f * f.left, 2.0 * f.bottom, 2.0 * f.near)));
-  BOOST_TEST_MESSAGE("scene::object::camera::frustum: " << f << '\n');
+
+  std::ostringstream ostr;
+
+  ostr << f;
+  
+  BOOST_CHECK(!ostr.str().empty());
+  
+  BOOST_TEST_MESSAGE("scene::object::camera::frustum: " << ostr.str() << '\n');
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_viewport)
@@ -61,8 +69,15 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_viewport)
   
   viewport const v;
   
-  BOOST_CHECK(v.width == v.height);
-  BOOST_TEST_MESSAGE("scene::object::camera::viewport: " << v << '\n');
+  BOOST_CHECK(viewport() == v);
+  
+  std::ostringstream ostr;
+
+  ostr << v;
+  
+  BOOST_CHECK(!ostr.str().empty());
+  
+  BOOST_TEST_MESSAGE("scene::object::camera::viewport: " << ostr.str() << '\n');
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_orthographic)
@@ -73,7 +88,14 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_orthographic)
   
   BOOST_CHECK(0.0 == (oc.frustum.get().right + oc.frustum.get().left));
   BOOST_CHECK(0.0 == (oc.frustum.get().top   + oc.frustum.get().bottom));
-  BOOST_TEST_MESSAGE(oc << '\n');
+
+  std::ostringstream ostr;
+
+  ostr << oc;
+  
+  BOOST_CHECK(!ostr.str().empty());
+  
+  BOOST_TEST_MESSAGE(ostr.str() << '\n');
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective)
@@ -84,7 +106,14 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective)
                           glm::vec2(frustum().near, 10));
   
   BOOST_CHECK(angle45deg == pc.fovy.get());
-  BOOST_TEST_MESSAGE(glm::io::precision(4) << pc << '\n');
+
+  std::ostringstream ostr;
+
+  ostr << pc;
+  
+  BOOST_CHECK(!ostr.str().empty());
+  
+  BOOST_TEST_MESSAGE(glm::io::precision(4) << ostr.str() << '\n');
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective_infty)
@@ -95,5 +124,12 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_object_camera_perspective_infty)
                           glm::vec2(frustum().near, std::numeric_limits<float>::infinity()));
   
   BOOST_CHECK(angle45deg == pc.fovy.get());
-  BOOST_TEST_MESSAGE(glm::io::precision(4) << pc << '\n');
+
+  std::ostringstream ostr;
+
+  ostr << pc;
+  
+  BOOST_CHECK(!ostr.str().empty());
+  
+  BOOST_TEST_MESSAGE(glm::io::precision(4) << ostr.str() << '\n');
 }

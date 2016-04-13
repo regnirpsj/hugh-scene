@@ -58,7 +58,20 @@ namespace hugh {
         {
           TRACE("hugh::scene::object::camera::viewport::viewport");
         }
-      
+
+        bool
+        operator==(viewport const& a, viewport const& b)
+        {
+          TRACE("hugh::scene::object::camera::operator==(viewport,viewport)");
+
+          return (!(a.x      != b.x     ) &&
+                  !(a.y      != b.y     ) &&
+                  !(a.width  != b.width ) &&
+                  !(a.height != b.height) &&
+                  !(a.near   != b.near  ) &&
+                  !(a.far    != b.far   ));
+        }
+        
         std::ostream&
         operator<<(std::ostream& os, viewport const& a)
         {

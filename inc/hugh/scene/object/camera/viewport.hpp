@@ -66,9 +66,17 @@ namespace hugh {
         // variables, exported (extern)
 
         // functions, inlined (inline)
-  
+        
         // functions, exported (extern)
-      
+
+        /**
+         * \brief equality comparison operator for \c viewport
+         */
+        HUGH_SCENE_EXPORT bool operator==(viewport const&, viewport const&);
+
+        /**
+         * \brief \c std::ostream insertion operator for \c viewport
+         */
         HUGH_SCENE_EXPORT std::ostream& operator<<(std::ostream&, viewport const&);
       
       } // namespace camera {
