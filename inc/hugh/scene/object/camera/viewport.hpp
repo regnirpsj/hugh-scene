@@ -18,7 +18,8 @@
 
 // includes, system
 
-#include <iosfwd> // std::ostream (fwd)
+#include <glm/glm.hpp> // glm::vec3
+#include <iosfwd>      // std::ostream (fwd)
 
 // includes, project
 
@@ -61,6 +62,9 @@ namespace hugh {
                             float /* height */ = 100.00,
                             float /* near */   =   0.00,
                             float /* far */    =   1.00);
+
+          bool contains(glm::vec3 const&) const;
+          
         };
       
         // variables, exported (extern)

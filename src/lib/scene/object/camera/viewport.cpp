@@ -60,6 +60,16 @@ namespace hugh {
         }
 
         bool
+        viewport::contains(glm::vec3 const& a) const
+        {
+          TRACE("hugh::scene::object::camera::viewport::contains");
+
+          return (!(a.x <    x) && !(a.x > x +  width) &&
+                  !(a.y <    y) && !(a.y > y + height) &&
+                  !(a.z < near) && !(a.z >        far));
+        }
+        
+        bool
         operator==(viewport const& a, viewport const& b)
         {
           TRACE("hugh::scene::object::camera::operator==(viewport,viewport)");
