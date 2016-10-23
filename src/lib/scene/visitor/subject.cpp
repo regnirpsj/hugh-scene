@@ -51,7 +51,7 @@ namespace hugh {
       // functions, exported
 
       /* virtual */
-      subject::~subject()
+      subject::~subject() noexcept(false)
       {
         TRACE("hugh::scene::visitor::subject::~subject");
       }

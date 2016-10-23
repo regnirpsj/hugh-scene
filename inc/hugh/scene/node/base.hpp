@@ -63,7 +63,7 @@ namespace hugh {
         field::value::single<unsigned> travmask; //< traversal mask
         field::value::single<bounds>   bbox;     //< bounding box
 
-        virtual ~base() =0;
+        virtual ~base() noexcept(false) =0;
       
         virtual void accept(visitor::base&) =0;
 

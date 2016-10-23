@@ -66,7 +66,7 @@ namespace hugh {
 
       public:
 
-        virtual ~subject() =0;
+        virtual ~subject() noexcept(false) =0;
       
         virtual void accept(visitor::base&) =0;
       

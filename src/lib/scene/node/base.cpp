@@ -70,7 +70,7 @@ namespace hugh {
       } 
     
       /* virtual */
-      base::~base()
+      base::~base() noexcept(false) 
       {
         TRACE("hugh::scene::node::base::~base");
       }
