@@ -522,9 +522,9 @@ namespace hugh {
                   switch (face_list[i].size()) {
                   case 3:
                     for (auto const& v : face_list[i]) {
-                      attrs.push_back(attribute(vertex_list[v.x-1].xyz(),
-                                                (0 < v.z) ? normal_list[v.z-1].xyz() : dflt.xyz(),
-                                                (0 < v.y) ? tcoord_list[v.y-1].xy()  : dflt.xy()));
+                      attrs.push_back(attribute(vertex_list[v.x-1].xyz,
+                                                (0 < v.z) ? normal_list[v.z-1].xyz : dflt.xyz,
+                                                (0 < v.y) ? tcoord_list[v.y-1].xy  : dflt.xy));
                     }
                     break;
 
