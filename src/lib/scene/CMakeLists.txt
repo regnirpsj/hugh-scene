@@ -8,7 +8,7 @@
 
 cma_print_current_directory()
 
-find_package(Boost ${BOOST_MINIMUM_VERSION} REQUIRED COMPONENTS filesystem)
+find_package(Boost ${BOOST_MINIMUM_VERSION} REQUIRED COMPONENTS filesystem thread)
 find_package(GLI   ${GLI_MINIMUM_VERSION}   REQUIRED)
 find_package(GLM   ${GLM_MINIMUM_VERSION}   REQUIRED)
 find_package(HUGH                           REQUIRED COMPONENTS field gli glm support)
@@ -26,10 +26,13 @@ if(OPENMP_FOUND)
 endif()
 
 set(SRC)
+
 list(APPEND SRC file.cpp)
+
 list(APPEND SRC loader/mtl.cpp)
 list(APPEND SRC loader/obj.cpp)
 list(APPEND SRC loader/xform.cpp)
+
 list(APPEND SRC node/base.cpp)
 list(APPEND SRC node/camera.cpp)
 list(APPEND SRC node/dynamic.cpp)
@@ -43,6 +46,7 @@ list(APPEND SRC node/rotor.cpp)
 list(APPEND SRC node/select.cpp)
 list(APPEND SRC node/transform.cpp)
 list(APPEND SRC node/translator.cpp)
+
 list(APPEND SRC object/base.cpp)
 list(APPEND SRC object/camera/base.cpp)
 list(APPEND SRC object/camera/frustum.cpp)
@@ -61,12 +65,14 @@ list(APPEND SRC object/texture/d2.cpp)
 list(APPEND SRC object/texture/d3.cpp)
 list(APPEND SRC object/texture/fill.cpp)
 list(APPEND SRC object/texture/load.cpp)
+
 list(APPEND SRC primitive/cube.cpp)
 list(APPEND SRC primitive/cylinder.cpp)
 list(APPEND SRC primitive/icosahedron.cpp)
 list(APPEND SRC primitive/octahedron.cpp)
 list(APPEND SRC primitive/sphere.cpp)
 list(APPEND SRC primitive/tetrahedron.cpp)
+
 list(APPEND SRC visitor/base.cpp)
 list(APPEND SRC visitor/bfs.cpp)
 #list(APPEND SRC visitor/collect.cpp)
