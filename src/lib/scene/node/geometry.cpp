@@ -308,7 +308,7 @@ namespace hugh {
           glm::io::format_saver const iofs(os);
 
           os << glm::io::precision(2)
-             << glm::io::width(1 + 2 + 1 + os.precision())
+             << glm::io::width(1 + 2 + 1 + unsigned(os.precision()))
              << '['
              << "v:"  << a.position << ','
              << "n:"  << a.normal   << ','

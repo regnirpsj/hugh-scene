@@ -424,9 +424,9 @@ namespace hugh {
 
             // remove objects w/o faces
             while (object_list.end() != current) {
-              object_type& o(*current);
+              object_type& c(*current);
 
-              if (1 > std::get<2>(o)) {
+              if (1 > std::get<2>(c)) {
                 current = object_list.erase(current);
               } else {
                 ++current;

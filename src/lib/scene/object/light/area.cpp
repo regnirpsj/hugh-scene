@@ -44,7 +44,7 @@ namespace {
                                                        glm::vec3(1.0, 1.0,  1.0),
                                                        glm::vec3(1.0, 0.0,  0.0),
                                                        0.0,
-                                                       glm::radians(180.0));
+                                                       glm::radians(180.0f));
   
   // functions, internal
 
@@ -133,7 +133,7 @@ namespace hugh {
                 glm::vec2 const start (-(glm::vec2(size.get()) / float(2.0)) +
                                        (stride / float(2.0)));
                 glm::vec2 const stop  (  glm::vec2(size.get()) / float(2.0));
-                glm::vec3 const scale (1.0 / (samples.get().x * samples.get().y));
+                glm::vec3 const scale (1.0f / (samples.get().x * samples.get().y));
 
                 rep_list_.clear();
               

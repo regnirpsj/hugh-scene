@@ -44,7 +44,7 @@ namespace {
                                                        glm::vec3(1.0, 1.0,  1.0),
                                                        glm::vec3(1.0, 0.0,  0.0),
                                                        0.0,
-                                                       glm::radians(180.0));
+                                                       glm::radians(180.0f));
   
   // functions, internal
 

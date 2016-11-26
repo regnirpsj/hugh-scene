@@ -205,19 +205,19 @@ namespace {
   inline glm::vec3
   xyz_to_rgb(glm::vec3 const& xyz)
   {
-    static float const     a  ( 0.055);
-    static float const     b  (12.920);
+    static float const     a  ( 0.055f);
+    static float const     b  (12.920f);
     static glm::mat3 const c  (+3.2406, -1.5372, -0.4986,
                                -0.9689, +1.8758, +0.0415,
                                +0.0557, -0.2040, +1.0570);
-    static float const     lim(0.0031308);
-    static float const     exp(1.0/2.4);
+    static float const     lim(0.0031308f);
+    static float const     exp(1.0f / 2.4f);
     
     glm::vec3 result(c * (xyz / glm::vec3(100.0)));
     
-    result.r = (result.r > lim) ? ((1.0 + a) * std::pow(result.r, exp)) : (b * result.r);
-    result.g = (result.g > lim) ? ((1.0 + a) * std::pow(result.g, exp)) : (b * result.g);
-    result.b = (result.b > lim) ? ((1.0 + a) * std::pow(result.b, exp)) : (b * result.b);
+    result.r = (result.r > lim) ? ((1.0f + a) * std::pow(result.r, exp)) : (b * result.r);
+    result.g = (result.g > lim) ? ((1.0f + a) * std::pow(result.g, exp)) : (b * result.g);
+    result.b = (result.b > lim) ? ((1.0f + a) * std::pow(result.b, exp)) : (b * result.b);
     
     return result;
   }

@@ -52,8 +52,8 @@ namespace hugh {
       
         // variables, exported
 
-#if !defined(_MSC_VER) || (defined(_MSC_VER) && (_MSC_VER > 1900))
-        /* static */ float const perspective::default_fovy(60_deg);
+#if !defined(_MSC_VER) || (defined(_MSC_VER) && (_MSC_VER >= 1900))
+        /* static */ float const perspective::default_fovy(float(60_deg));
 #else
         /* static */ float const perspective::default_fovy(float(60 _deg));
 #endif
