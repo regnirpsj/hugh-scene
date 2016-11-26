@@ -35,6 +35,9 @@ namespace {
   // types, internal (class, enum, struct, union, typedef)
 
   // variables, internal
+
+  glm::uvec3 const dflt_size (1, 1, 1);
+  glm::uvec4 const dflt_color(1, 1, 1, 1);
   
   // functions, internal
   
@@ -49,9 +52,9 @@ namespace hugh {
       namespace texture {
       
         // variables, exported
-
-        /* static */ glm::uvec3 const base::default_size (1, 1, 1);
-        /* static */ glm::uvec4 const base::default_color(1, 1, 1, 1);
+        
+        /* static */ glm::uvec3 const base::default_size (dflt_size);
+        /* static */ glm::uvec4 const base::default_color(dflt_color);
     
         // functions, exported
 
