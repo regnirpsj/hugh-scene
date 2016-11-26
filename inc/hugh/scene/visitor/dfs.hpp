@@ -36,7 +36,7 @@ namespace hugh {
 
       public:
       
-        virtual ~dfs() =0;
+        virtual ~dfs();
 
         virtual void visit(node::group&);
       
@@ -45,10 +45,6 @@ namespace hugh {
       protected:
 
         explicit dfs();
-
-      private:
-
-        virtual void visit(subject&);
       
       };
     

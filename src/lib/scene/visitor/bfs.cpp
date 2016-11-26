@@ -105,7 +105,11 @@ namespace hugh {
 
       /* explicit */
       bfs::bfs()
-        : base       (),
+        :
+        // [https://connect.microsoft.com/VisualStudio/feedback/details/1581706/]
+#if defined(_MSC_VER) && (_MSC_VER != 1900)
+          base       (),
+#endif
           node_queue_()
       {
         TRACE("hugh::scene::visitor::bfs::bfs");
@@ -120,12 +124,6 @@ namespace hugh {
           node_queue_.front()->accept(*this);
           node_queue_.pop();
         }
-      }
-
-      /* virtual */ void
-      bfs::visit(subject&)
-      {
-        TRACE("hugh::scene::visitor::bfs::visit(subject)");
       }
     
     } // namespace visitor {

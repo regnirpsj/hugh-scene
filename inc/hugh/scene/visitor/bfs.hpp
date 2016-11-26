@@ -37,7 +37,7 @@ namespace hugh {
 
       public:
       
-        virtual ~bfs() =0;
+        virtual ~bfs();
       
         virtual void visit(node::group&);
       
@@ -51,11 +51,7 @@ namespace hugh {
       
         explicit bfs();
 
-        virtual void flush();
-      
-      private:
-
-        virtual void visit(subject&);
+        virtual void flush();      
       
       };
     

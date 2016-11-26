@@ -92,15 +92,12 @@ namespace hugh {
 
       /* explicit */
       dfs::dfs()
+        // [https://connect.microsoft.com/VisualStudio/feedback/details/1581706/]
+#if defined(_MSC_VER) && (_MSC_VER != 1900)
         : base()
+#endif
       {
         TRACE("hugh::scene::visitor::dfs::dfs");
-      }
-
-      /* virtual */ void
-      dfs::visit(subject&)
-      {
-        TRACE("hugh::scene::visitor::dfs::visit(subject)");
       }
     
     } // namespace visitor {
