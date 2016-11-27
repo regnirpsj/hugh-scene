@@ -42,9 +42,9 @@ namespace {
   
   // functions, internal
 
-  template <typename L, typename T, typename Q>
+  template <typename L, typename Q>
   inline void
-  visit_helper(L const& l, T const*, Q& q, hugh::scene::visitor::bfs& v)
+  visit_helper(L const& l, Q& gq, hugh::scene::visitor::bfs& v)
   {
     TRACE("hugh::scene::visitor::bfs::<unnamed>::visit_helper(" +
           hugh::support::demangle(typeid(l)) + ")");
@@ -52,8 +52,8 @@ namespace {
     Q lq;
 
     for (auto const& c : l) {
-      if (nullptr == dynamic_cast<T const*>(c.get())) {
-        q.push(c);
+      if (nullptr == dynamic_cast<hugh::scene::node::group const*>(c.get())) {
+        gq.push(c);
       } else {
         lq.push(c);
       }
@@ -90,7 +90,7 @@ namespace hugh {
       {
         TRACE("hugh::scene::visitor::bfs::visit(node::group)");
 
-        visit_helper(a.children.get(), &a, node_queue_, *this);
+        visit_helper(a.children.get(), node_queue_, *this);
       }
 
       /* virtual */ void
@@ -121,7 +121,12 @@ namespace hugh {
         TRACE("hugh::scene::visitor::bfs::flush");
       
         while (!node_queue_.empty()) {
-          node_queue_.front()->accept(*this);
+          auto g(dynamic_cast<node::group*>(node_queue_.front().get()));
+
+          if (g) {
+            g->accept(*this);
+          }
+          
           node_queue_.pop();
         }
       }
