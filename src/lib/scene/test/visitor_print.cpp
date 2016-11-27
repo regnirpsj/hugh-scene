@@ -39,7 +39,7 @@ namespace {
   public:
     
     virtual ~simple_bfs() { /* ... */ }
-
+    
   private:
 
     virtual void visit(hugh::scene::visitor::subject&) { /* ... */ }
@@ -92,7 +92,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_simple_dfs)
   simple_dfs v;
 
   g->accept(v);
-  
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_graph_bfs)
@@ -110,11 +109,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_graph_bfs)
     visitor::print pv(output, visitor::print::order::bfs);
     
     g->accept(pv);
-
-#if 0
-    visitor::print pv1(std::cout, visitor::print::order::bfs);
-    g->accept(pv1);
-#endif
   }
 
   BOOST_CHECK       (!output.is_empty(false));
@@ -133,11 +127,6 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_visitor_print_graph_dfs)
   
   visitor::print pv(output, visitor::print::order::dfs);
   g->accept(pv);
-  
-#if 0
-  visitor::print pv1(std::cout, visitor::print::order::dfs);
-  g->accept(pv1);
-#endif
     
   BOOST_CHECK       (!output.is_empty(false));
   BOOST_TEST_MESSAGE(output.str());
