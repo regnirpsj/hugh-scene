@@ -41,6 +41,7 @@ LIST(APPEND SRC primitive_sphere.cpp)
 LIST(APPEND SRC primitive_tetrahedron.cpp)
 
 add_definitions(-DGLI_ROOT_DIR=${GLI_ROOT_DIR})
+add_definitions(-DCMAKE_INSTALL_PREFIX=\"${CMAKE_INSTALL_PREFIX}\")
 
 set(LIBS)
 list(APPEND LIBS ${LIB})
