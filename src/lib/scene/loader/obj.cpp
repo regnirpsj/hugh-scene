@@ -267,6 +267,9 @@ namespace hugh {
           std::string      line;
         
           while (std::getline(is, line)) {
+            boost::trim       (line);
+            boost::replace_all(line, "\t", " ");
+            
             if (line.empty() ||
                 ('#'  == line[0]) ||
                 ('!'  == line[0]) ||
@@ -434,7 +437,7 @@ namespace hugh {
             }
           }
 
-          // have faces but no object -> create deafult object
+          // have faces but no object -> create default object
           else if (!face_list.empty()) {
             object_list.push_back(std::make_tuple("unnamed",
                                                   0,                // face list idx
@@ -457,11 +460,8 @@ namespace hugh {
               material_group* mg(new material_group);
             
               if (material_list.end() != found) {
-                // mg = new material_group(/* std::get<3>(o), *(*found) */);
                 mg->name     = std::get<3>(o);
                 mg->material = *found;
-              } else {
-                // mg = new material_group(/* std::get<3>(o) */);
               }
             
               {

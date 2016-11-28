@@ -19,8 +19,8 @@
 // includes, system
 
 #include <iosfwd>       // std::istream, std::ostream (fwd decl)
-#include <string>       // std::string
 #include <forward_list> // std::forward_list<>
+#include <string>       // std::string
 
 // includes, project
 

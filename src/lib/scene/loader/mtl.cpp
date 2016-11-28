@@ -266,21 +266,25 @@ namespace hugh {
           std::string line;
 
           while (std::getline(is, line)) {
+            boost::trim       (line);
+            boost::replace_all(line, "\t", " ");
+            
             if (line.empty() ||
-                ('#' == line[0]) ||
-                ('!' == line[0]) ||
-                ('$' == line[0]) ||
+                ('#'  == line[0]) ||
+                ('!'  == line[0]) ||
+                ('$'  == line[0]) ||
                 ('\r' == line[0])) {
               continue;
             }
-          
+            
             static boost::char_separator<char> const token_separator_space(" ");
           
             using tokenizer = boost::tokenizer<boost::char_separator<char>>;
         
             tokenizer tokens(line, token_separator_space);
-          
-            if      ("bump" == *tokens.begin()) { // bump -options args filename
+            
+            if      (("bump"     == *tokens.begin()) || // bump -options args filename
+                     ("map_bump" == *tokens.begin())) { // map_bump -options args filename
               get_map_name(std::string(line.begin() + (*tokens.begin()).length() + 1, line.end()));
             }
           
@@ -446,7 +450,7 @@ namespace hugh {
                                                                       line.end()));
             }
           
-            else if ("refl" == *tokens.begin()) { //refl -type <type> -options -args filename
+            else if ("refl" == *tokens.begin()) { // refl -type <type> -options -args filename
               auto start(line.begin() + (*tokens.begin()).length());
 
               {
@@ -496,14 +500,12 @@ namespace hugh {
               (*result.rbegin())->back  = true;
             }
 
-#if 1 // defined(HUGH_USE_TRACE)
             else {
               std::cout << support::trace::prefix()
                         << "hugh::scene::file::mtl::load(std::istream): "
                         << "unhandled token '" << *tokens.begin() << "'; skipping "
                         << "whole line '" << line << "'" << std::endl;
             }
-#endif
           }
 
           return result;
