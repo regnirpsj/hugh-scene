@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/octahedron.hpp                                             */
+/*  module     :  hugh/scene/object/geometry/attribute.inl                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_PRIMITIVE_OCTAHEDRON_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_INL)
 
-#define HUGH_SCENE_PRIMITIVE_OCTAHEDRON_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_INL
 
 // includes, system
 
@@ -22,38 +22,45 @@
 
 // includes, project
 
-#include <hugh/scene/node/geometry.hpp>
+//#include <>
+
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // types, exported (class, enum, struct, union, typedef)
+    namespace object {
 
-      class HUGH_SCENE_EXPORT octahedron : public node::geometry {
+      namespace geometry {
+        
+        // functions, inlined (inline)
 
-      public:
-
-        using subject_inherited = node::geometry;
-
-        explicit octahedron();
+        inline bool
+        operator==(attribute const& lhs, attribute const& rhs)
+        {
+          TRACE("hugh::scene::object::geometry::operator==(attribute,attribute)");
       
-        virtual void accept(visitor::base&);
+          return ((&lhs == &rhs) ||
+                  ((lhs.position == rhs.position) &&
+                   (lhs.normal   == rhs.normal)   &&
+                   (lhs.tcoord   == rhs.tcoord)   &&
+                   (lhs.tangent  == rhs.tangent)  &&
+                   (lhs.color    == rhs.color)));
+        }
+
+      } // namespace geometry {
       
-      };
-    
-      // variables, exported (extern)
-
-      // functions, inlined (inline)
-  
-      // functions, exported (extern)
-
-    } // namespace primitive {
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_PRIMITIVE_OCTAHEDRON_HPP)
+#if defined(HUGH_USE_TRACE)
+#  undef HUGH_USE_TRACE
+#endif
+
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_INL)

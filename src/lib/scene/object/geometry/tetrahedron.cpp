@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/tetrahedron.cpp                                            */
+/*  module     :  hugh/scene/object/geometry/tetrahedron.cpp                                      */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,7 +14,7 @@
 
 // include i/f header
 
-#include "hugh/scene/primitive/tetrahedron.hpp"
+#include "hugh/scene/object/geometry/tetrahedron.hpp"
 
 // includes, system
 
@@ -22,7 +22,7 @@
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -34,17 +34,17 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  using namespace hugh::scene;
+  using namespace hugh::scene::object;
   
   // variables, internal
   
   // functions, internal
 
   void
-  make_tetrahedron(node::geometry::attribute_list_type& attr_list,
-                   node::geometry::index_list_type&     index_list)
+  make_tetrahedron(geometry::base::attribute_list_type& attr_list,
+                   geometry::base::index_list_type&     index_list)
   {
-    TRACE("hugh::scene::primitive::tetrahedron::<unnamed>::make_tetrahedron");
+    TRACE("hugh::scene::object::geometry::tetrahedron::<unnamed>::make_tetrahedron");
     
     // right-handed coordinate system assumed
     static std::array<glm::vec3, 4> const points = {
@@ -77,16 +77,14 @@ namespace {
     unsigned idx_count(0);
 
     for (auto const& idx : indices) {
-      glm::vec3 const& p1(points[idx[0]]);
-      glm::vec3 const& p2(points[idx[1]]);
-      glm::vec3 const& p3(points[idx[2]]);
-      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p2, p3 - p2)));
-
-      using node::geometry;
+      glm::vec3 const& p0(points[idx[0]]);
+      glm::vec3 const& p1(points[idx[1]]);
+      glm::vec3 const& p2(points[idx[2]]);
+      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p0, p2 - p0)));
       
-      attr_list.push_back(geometry::attribute(p1, n, glm::vec2(tcoords[0][0], tcoords[0][1])));
-      attr_list.push_back(geometry::attribute(p2, n, glm::vec2(tcoords[1][0], tcoords[1][1])));
-      attr_list.push_back(geometry::attribute(p3, n, glm::vec2(tcoords[2][0], tcoords[2][1])));
+      attr_list.push_back(geometry::attribute(p0, n, glm::vec2(tcoords[0][0], tcoords[0][1])));
+      attr_list.push_back(geometry::attribute(p1, n, glm::vec2(tcoords[1][0], tcoords[1][1])));
+      attr_list.push_back(geometry::attribute(p2, n, glm::vec2(tcoords[2][0], tcoords[2][1])));
 
       index_list.push_back(idx_count++);
       index_list.push_back(idx_count++);
@@ -100,33 +98,32 @@ namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // variables, exported
-    
-      // functions, exported
+    namespace object {
 
-      /* explicit */
-      tetrahedron::tetrahedron()
-        : node::geometry()
-      {
-        TRACE("hugh::scene::primitive::tetrahedron::tetrahedron");
-
-        make_tetrahedron(attribute_list_, index_list_);
-
-        compute_bounds();
-        compute_tangents();
-      }
+      namespace geometry {
     
-      /* virtual */ void
-      tetrahedron::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::primitive::tetrahedron::accept");
-
-        v.visit(*this);
-      }
+        // variables, exported
     
-    } // namespace primitive {
+        // functions, exported
+
+        /* explicit */
+        tetrahedron::tetrahedron()
+          : base()
+        {
+          TRACE("hugh::scene::object::geometry::tetrahedron::tetrahedron");
+
+          attribute_list_.clear();
+          index_list_    .clear();
+          
+          make_tetrahedron(attribute_list_, index_list_);
+
+          compute_bounds();
+          compute_tangents();
+        }
+        
+      } // namespace geometry {
+          
+    } // namespace object {
   
   } // namespace scene {
 

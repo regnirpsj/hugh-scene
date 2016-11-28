@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/cylinder.hpp                                               */
+/*  module     :  hugh/scene/object/geometries.hpp                                                */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_PRIMITIVE_CYLINDER_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRIES_HPP)
 
-#define HUGH_SCENE_PRIMITIVE_CYLINDER_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRIES_HPP
 
 // includes, system
 
@@ -22,46 +22,28 @@
 
 // includes, project
 
-#include <hugh/scene/node/geometry.hpp>
+#include <hugh/scene/object/geometry/cube.hpp>
+#include <hugh/scene/object/geometry/cylinder.hpp>
+#include <hugh/scene/object/geometry/icosahedron.hpp>
+#include <hugh/scene/object/geometry/mesh.hpp>
+#include <hugh/scene/object/geometry/octahedron.hpp>
+#include <hugh/scene/object/geometry/sphere.hpp>
+#include <hugh/scene/object/geometry/tetrahedron.hpp>
 
 namespace hugh {
   
   namespace scene {
-
-    namespace primitive {
-    
-      // types, exported (class, enum, struct, union, typedef)
-
-      class HUGH_SCENE_EXPORT cylinder : public node::geometry {
-
-      public:
-
-        using subject_inherited = node::geometry;
-
-        static unsigned const dflt_sides; // == 36
-        
-        explicit cylinder(unsigned = dflt_sides);
-
-        field::value::single<unsigned> sides; //< sides
-      
-        virtual void accept(visitor::base&);
-
-      protected:
-
-        virtual void do_changed(field::base&);
-      
-      };
-    
-      // variables, exported (extern)
-
-      // functions, inlined (inline)
   
-      // functions, exported (extern)
+    // types, exported (class, enum, struct, union, typedef)
 
-    } // namespace primitive {
+    // variables, exported (extern)
+
+    // functions, inlined (inline)
+  
+    // functions, exported (extern)
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_PRIMITIVE_CYLINDER_HPP)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRIES_HPP)

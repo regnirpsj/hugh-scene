@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/octahedron.cpp                                             */
+/*  module     :  hugh/scene/object/geometry/octahedron.cpp                                       */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,15 +14,15 @@
 
 // include i/f header
 
-#include "hugh/scene/primitive/octahedron.hpp"
+#include "hugh/scene/object/geometry/octahedron.hpp"
 
 // includes, system
 
-#include <array> // std::array<>
+//#include <>
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -34,18 +34,18 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  using namespace hugh::scene;
+  using namespace hugh::scene::object;
   
   // variables, internal
   
   // functions, internal
 
   void
-  make_octahedron(node::geometry::attribute_list_type& attr_list,
-                  node::geometry::index_list_type&     index_list)
+  make_octahedron(geometry::base::attribute_list_type& attr_list,
+                  geometry::base::index_list_type&     index_list)
   {
-    TRACE("hugh::scene::primitive::octahedron::<unnamed>::make_octahedron");
-    
+    TRACE("hugh::scene::object::geometry::octahedron::<unnamed>::make_octahedron");
+
     // right-handed coordinate system assumed
     static std::array<glm::vec3, 6> const points = {
       {
@@ -79,20 +79,18 @@ namespace {
         { { 5, 1, 0 } },
       }
     };
-    
+
     unsigned idx_count(0);
 
     for (auto const& idx : indices) {
-      glm::vec3 const& p1(points[idx[0]]);
-      glm::vec3 const& p2(points[idx[1]]);
-      glm::vec3 const& p3(points[idx[2]]);
-      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p2, p3 - p2)));
-
-      using node::geometry;
+      glm::vec3 const& p0(points[idx[0]]);
+      glm::vec3 const& p1(points[idx[1]]);
+      glm::vec3 const& p2(points[idx[2]]);
+      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p0, p2 - p0)));
       
-      attr_list.push_back(geometry::attribute(p1, n, glm::vec2(tcoords[0][0], tcoords[0][1])));
-      attr_list.push_back(geometry::attribute(p2, n, glm::vec2(tcoords[1][0], tcoords[1][1])));
-      attr_list.push_back(geometry::attribute(p3, n, glm::vec2(tcoords[2][0], tcoords[2][1])));
+      attr_list.push_back(geometry::attribute(p0, n, glm::vec2(tcoords[0][0], tcoords[0][1])));
+      attr_list.push_back(geometry::attribute(p1, n, glm::vec2(tcoords[1][0], tcoords[1][1])));
+      attr_list.push_back(geometry::attribute(p2, n, glm::vec2(tcoords[2][0], tcoords[2][1])));
 
       index_list.push_back(idx_count++);
       index_list.push_back(idx_count++);
@@ -106,33 +104,32 @@ namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // variables, exported
-    
-      // functions, exported
+    namespace object {
 
-      /* explicit */
-      octahedron::octahedron()
-        : node::geometry()
-      {
-        TRACE("hugh::scene::primitive::octahedron::octahedron");
+      namespace geometry {
+        
+        // variables, exported
+    
+        // functions, exported
 
-        make_octahedron(attribute_list_, index_list_);
+        /* explicit */
+        octahedron::octahedron()
+          : base()
+        {
+          TRACE("hugh::scene::object::geometry::octahedron::octahedron");
+
+          attribute_list_.clear();
+          index_list_    .clear();
+
+          make_octahedron(attribute_list_, index_list_);
       
-        compute_bounds();
-        compute_tangents();
-      }
-    
-      /* virtual */ void
-      octahedron::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::primitive::octahedron::accept");
+          compute_bounds();
+          compute_tangents();
+        }
 
-        v.visit(*this);
-      }
-    
-    } // namespace primitive {
+      } // namespace geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 

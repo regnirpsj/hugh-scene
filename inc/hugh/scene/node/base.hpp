@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/base.hpp                                                             */
+/*  module     :  hugh/scene/node/base.hpp                                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, system
 
-#include <glm/glm.hpp> // glm::mat4, glm::vec3
+#include <glm/glm.hpp> // glm::mat4
 
 // includes, project
 
@@ -40,28 +40,10 @@ namespace hugh {
       public:
 
         using subject_inherited = visitor::subject;
-
-        struct bounds {
-
-        public:
-
-          static bounds const invalid; // { [+inf, +inf, +inf], [-inf, -inf, -inf], false, }
-
-          glm::vec3 min;
-          glm::vec3 max;
-          bool      valid;
-
-          explicit bounds(glm::vec3 const& /* min */   = invalid.min,
-                          glm::vec3 const& /* max */   = invalid.max,
-                          bool             /* valid */ = invalid.valid);
-        
-        };
-      
         using parent_field_type = field::adapter::single<base*>;
       
-        parent_field_type const        parent;   //< parent node
         field::value::single<unsigned> travmask; //< traversal mask
-        field::value::single<bounds>   bbox;     //< bounding box
+        parent_field_type const        parent;   //< parent node
 
         virtual ~base() noexcept(false) =0;
       
@@ -81,7 +63,7 @@ namespace hugh {
         virtual void do_changed(field::base&);
 
         virtual void invalidate_bounds();
-      
+        
       private:
 
         using parent_type = parent_field_type::value_type;
@@ -94,20 +76,13 @@ namespace hugh {
       // variables, exported (extern)
 
       // functions, inlined (inline)
-
-      bool operator==(base::bounds const&, base::bounds const&);
-      bool operator!=(base::bounds const&, base::bounds const&);
     
       // functions, exported (extern)
-
-      HUGH_SCENE_EXPORT std::ostream& operator<<(std::ostream&, base::bounds const&);
     
     } // namespace node {
 
   } // namespace scene {
 
 } // namespace hugh {
-
-#include <hugh/scene/node/base.inl>
 
 #endif // #if !defined(HUGH_SCENE_NODE_BASE_HPP)

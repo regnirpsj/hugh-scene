@@ -6,23 +6,24 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/object/camera/perspective.hpp                                        */
+/*  module     :  hugh/scene/node/geometry/attribute.hpp                                          */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_OBJECT_CAMERA_PERSPECTIVE_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_HPP)
 
-#define HUGH_SCENE_OBJECT_CAMERA_PERSPECTIVE_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_HPP
 
 // includes, system
 
-//#include <>
+#include <glm/glm.hpp> // glm::vec[3|4]
+#include <iosfwd>      // std::ostream (fwd)
 
 // includes, project
 
-#include <hugh/scene/object/camera/base.hpp>
+#include <hugh/scene/export.h>
 
 namespace hugh {
   
@@ -30,44 +31,46 @@ namespace hugh {
 
     namespace object {
 
-      namespace camera {
-      
+      namespace geometry {
+        
         // types, exported (class, enum, struct, union, typedef)
 
-        class HUGH_SCENE_EXPORT perspective : public base {
+        struct HUGH_SCENE_EXPORT attribute {
 
         public:
-
-          using subject_inherited = base;
-
-          static float const default_fovy; //< default vertical vield-of-view (60 degrees)
         
-          explicit perspective(float                /* fovy */     = default_fovy,
-                               viewport_type const& /* viewport */ = viewport_type(),
-                               glm::vec2 const&     /* near/far */ = glm::vec2(frustum_type().near,
-                                                                               frustum_type().far));
-          virtual ~perspective();
+          glm::vec3 position;
+          glm::vec3 normal;
+          glm::vec2 tcoord;
+          glm::vec4 tangent;
+          glm::vec4 color;
 
-          field::value::single<float> fovy; //< vertical field-of-view
-        
-            protected:
-
-          virtual void do_changed(field::base&);
+          explicit attribute(glm::vec3 const& /* position */ = glm::vec3(0.0),
+                             glm::vec3 const& /* normal   */ = glm::vec3(0.0),
+                             glm::vec2 const& /* tcoord   */ = glm::vec2(0.0),
+                             glm::vec4 const& /* tangent  */ = glm::vec4(0.0),
+                             glm::vec4 const& /* color    */ = glm::vec4(1.0));
         
         };
-      
+    
         // variables, exported (extern)
 
         // functions, inlined (inline)
-  
+
+        bool operator==(attribute const&, attribute const&);
+    
         // functions, exported (extern)
 
-      } // namespace camera {
+        HUGH_SCENE_EXPORT std::ostream& operator<<(std::ostream&, attribute const&);
 
-    } // namespace object {
+      } // namesapce geometry {
       
+    } // namespace object {
+  
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_OBJECT_CAMERA_PERSPECTIVE_HPP)
+#include <hugh/scene/object/geometry/attribute.inl>
+
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_ATTRIBUTE_HPP)

@@ -18,12 +18,11 @@
 
 // includes, system
 
-#include <glm/gtx/io.hpp> // glm::operator<<
-#include <ostream>        // std::ostream
+#include <ostream> // std::ostream
 
 // includes, project
 
-#include <glm/gtx/limits.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -48,26 +47,8 @@ namespace hugh {
     namespace node {
     
       // variables, exported
-
-      /* static */ base::bounds const base::bounds::invalid
-      (
-       glm::vec3(+std::numeric_limits<glm::vec3>::infinity(),
-                 +std::numeric_limits<glm::vec3>::infinity(),
-                 +std::numeric_limits<glm::vec3>::infinity()),
-       glm::vec3(-std::numeric_limits<glm::vec3>::infinity(),
-                 -std::numeric_limits<glm::vec3>::infinity(),
-                 -std::numeric_limits<glm::vec3>::infinity()),
-       false // invalid
-       );
     
       // functions, exported
-
-      /* explicit */
-      base::bounds::bounds(glm::vec3 const& a, glm::vec3 const& b, bool c)
-        : min(a), max(b), valid(c)
-      { 
-        TRACE("hugh::scene::node::base::bounds::bounds");
-      } 
     
       /* virtual */
       base::~base() noexcept(false) 
@@ -109,11 +90,10 @@ namespace hugh {
       base::base()
         : object::base    (),
           visitor::subject(),
+          travmask        (*this, "travmask", static_cast<unsigned>(~0)),
           parent          (*this, "parent",
                            std::bind(&base::cb_get_parent, this),
                            std::bind(&base::cb_set_parent, this, std::placeholders::_1)),
-          travmask        (*this, "travmask", static_cast<unsigned>(~0)),
-          bbox            (*this, "bbox",     bounds::invalid),
           parent_         (nullptr)
       {
         TRACE("hugh::scene::node::base::base");
@@ -143,11 +123,11 @@ namespace hugh {
       /* virtual */ void
       base::invalidate_bounds()
       {
-        TRACE("hugh::scene::node::base::invalidate_bounds");
+        TRACE("hugh::scene::object::base::invalidate_bounds");
 
         if (bbox.get().valid) {
-          bbox = bounds(bbox.get().min, bbox.get().max, false);
-
+          object::base::invalidate_bounds();
+          
           if (nullptr != parent_) {
             parent_->invalidate_bounds();
           }
@@ -170,27 +150,6 @@ namespace hugh {
         // nothing to do; 'parent_' bookkeeping is internally handled
       
         return cb_get_parent();
-      }
-
-      std::ostream&
-      operator<<(std::ostream& os, base::bounds const& a)
-      {
-        TRACE_NEVER("hugh::scene::node::operator<<(scene::node::base::bounds)");
-
-        std::ostream::sentry const cerberus(os);
-
-        if (cerberus) {
-          glm::io::format_saver const iofs(os);
-
-          os << glm::io::precision(2) << glm::io::width(4)
-             << '['
-             << a.min                  << ','
-             << a.max                  << ','
-             << ((a.valid) ? "" : "!") << "valid"
-             << ']';
-        }
-
-        return os;
       }
     
     } // namespace node {

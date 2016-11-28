@@ -18,7 +18,8 @@
 
 // includes, system
 
-#include <string> // std::string
+#include <glm/glm.hpp> // glm::vec3
+#include <string>      // std::string
 
 // includes, project
 
@@ -40,7 +41,24 @@ namespace hugh {
 
       public:
 
-        field::value::single<std::string> name; ///< name
+        struct bounds {
+
+        public:
+
+          static bounds const invalid; // { [+inf, +inf, +inf], [-inf, -inf, -inf], false, }
+
+          glm::vec3 min;
+          glm::vec3 max;
+          bool      valid;
+
+          explicit bounds(glm::vec3 const& /* min */   = invalid.min,
+                          glm::vec3 const& /* max */   = invalid.max,
+                          bool             /* valid */ = invalid.valid);
+        
+        };
+        
+        field::value::single<std::string> name; //< name
+        field::value::single<bounds>      bbox; //< bounding box
       
         virtual ~base() =0;
       
@@ -51,19 +69,28 @@ namespace hugh {
         explicit base();
       
         virtual void do_changed(field::base&);
-      
+
+        virtual void invalidate_bounds();
+
       };
     
       // variables, exported (extern)
 
       // functions, inlined (inline)
   
+      bool operator==(base::bounds const&, base::bounds const&);
+      bool operator!=(base::bounds const&, base::bounds const&);
+      
       // functions, exported (extern)
 
+      HUGH_SCENE_EXPORT std::ostream& operator<<(std::ostream&, base::bounds const&);
+      
     } // namespace object {
 
   } // namespace scene {
 
 } // namespace hugh {
+
+#include <hugh/scene/object/base.inl>
 
 #endif // #if !defined(HUGH_SCENE_OBJECT_BASE_HPP)

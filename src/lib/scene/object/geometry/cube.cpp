@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/cube.cpp                                                   */
+/*  module     :  hugh/scene/object/geometry/cube.cpp                                             */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,7 +14,7 @@
 
 // include i/f header
 
-#include "hugh/scene/primitive/cube.hpp"
+#include "hugh/scene/object/geometry/cube.hpp"
 
 // includes, system
 
@@ -22,7 +22,7 @@
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -34,17 +34,17 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  using namespace hugh::scene;
+  using namespace hugh::scene::object;
   
   // variables, internal
   
   // functions, internal
 
   void
-  make_cube(node::geometry::attribute_list_type& attr_list,
-            node::geometry::index_list_type&     index_list)
+  make_cube(geometry::base::attribute_list_type& attr_list,
+            geometry::base::index_list_type&     index_list)
   {
-    TRACE("hugh::scene::primitive::cube::<unnamed>::make_cube");
+    TRACE("hugh::scene::object::geometry::cube::<unnamed>::make_cube");
     
     // left-handed coordinate system assumed
     static std::array<glm::vec3, 8> const points = {
@@ -90,19 +90,17 @@ namespace {
     unsigned idx_count(0);
     
     for (auto const& idx : indices) {
-      glm::vec3 const& p1(points[idx[0]]);
-      glm::vec3 const& p2(points[idx[1]]);
-      glm::vec3 const& p3(points[idx[2]]);
-      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p2, p3 - p2)));
-      glm::vec2 const  t1(tcoords[idx[3]][0], tcoords[idx[3]][1]);
-      glm::vec2 const  t2(tcoords[idx[4]][0], tcoords[idx[4]][1]);
-      glm::vec2 const  t3(tcoords[idx[5]][0], tcoords[idx[5]][1]);
-
-      using node::geometry;
+      glm::vec3 const& p0(points[idx[0]]);
+      glm::vec3 const& p1(points[idx[1]]);
+      glm::vec3 const& p2(points[idx[2]]);
+      glm::vec3 const  n (glm::normalize(glm::cross(p1 - p0, p2 - p0)));
+      glm::vec2 const  t0(tcoords[idx[3]][0], tcoords[idx[3]][1]);
+      glm::vec2 const  t1(tcoords[idx[4]][0], tcoords[idx[4]][1]);
+      glm::vec2 const  t2(tcoords[idx[5]][0], tcoords[idx[5]][1]);
       
+      attr_list.push_back(geometry::attribute(p0, n, t0));
       attr_list.push_back(geometry::attribute(p1, n, t1));
       attr_list.push_back(geometry::attribute(p2, n, t2));
-      attr_list.push_back(geometry::attribute(p3, n, t3));
 
       index_list.push_back(idx_count++);
       index_list.push_back(idx_count++);
@@ -116,34 +114,33 @@ namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // variables, exported
-    
-      // functions, exported
-
-      /* explicit */
-      cube::cube()
-        : node::geometry()
-      {
-        TRACE("hugh::scene::primitive::cube::cube");
-
-        make_cube(attribute_list_, index_list_);
+    namespace object {
       
-        compute_bounds();
-        compute_tangents();
-      }
+      namespace geometry {
     
-      /* virtual */ void
-      cube::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::primitive::cube::accept");
+        // variables, exported
+    
+        // functions, exported
 
-        v.visit(*this);
-      }
+        /* explicit */
+        cube::cube()
+          : base()
+        {
+          TRACE("hugh::scene::object::geometry::cube::cube");
 
-    } // namespace primitive {
-  
+          attribute_list_.clear();
+          index_list_    .clear();
+          
+          make_cube(attribute_list_, index_list_);
+      
+          compute_bounds();
+          compute_tangents();
+        }    
+
+      } // namespace geometry {
+
+    } // namespace object {
+    
   } // namespace scene {
 
 } // namespace hugh {

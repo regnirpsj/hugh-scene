@@ -6,59 +6,54 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/mesh.hpp                                                        */
+/*  module     :  hugh/scene/object/geometry/octahedron.hpp                                       */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_NODE_MESH_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_OCTAHEDRON_HPP)
 
-#define HUGH_SCENE_NODE_MESH_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRY_OCTAHEDRON_HPP
 
 // includes, system
 
-// #include <>
+//#include <>
 
 // includes, project
 
-#include <hugh/scene/node/geometry.hpp>
+#include <hugh/scene/object/geometry/base.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace node {
+    namespace object {
+
+      namespace geometry {
+        
+        // types, exported (class, enum, struct, union, typedef)
+
+        class HUGH_SCENE_EXPORT octahedron : public base {
+
+        public:
+        
+          explicit octahedron();
+      
+        };
     
-      // types, exported (class, enum, struct, union, typedef)
+        // variables, exported (extern)
 
-      class HUGH_SCENE_EXPORT mesh : public geometry {
-
-      public:
-
-        using subject_inherited = geometry;
-      
-        using attribute_list_type = geometry::attribute_list_type;
-        using index_list_type     = geometry::index_list_type;
-      
-        explicit mesh(attribute_list_type const&, index_list_type const&);
-      
-        virtual void accept(visitor::base&);
-
-        void compute_normals();
-      
-      };
-    
-      // variables, exported (extern)
-
-      // functions, inlined (inline)
+        // functions, inlined (inline)
   
-      // functions, exported (extern)
+        // functions, exported (extern)
 
-    } // namespace node {
+      } // namespace geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_NODE_MESH_HPP)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_OCTAHEDRON_HPP)

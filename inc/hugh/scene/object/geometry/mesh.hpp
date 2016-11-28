@@ -6,57 +6,58 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/geometry.inl                                                    */
+/*  module     :  hugh/scene/object/geometry/mesh.hpp                                             */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_NODE_GEOMETRY_INL)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_MESH_HPP)
 
-#define HUGH_SCENE_NODE_GEOMETRY_INL
+#define HUGH_SCENE_OBJECT_GEOMETRY_MESH_HPP
 
 // includes, system
 
-//#include <>
+// #include <>
 
 // includes, project
 
-//#include <>
-
-#define HUGH_USE_TRACE
-#undef HUGH_USE_TRACE
-#include <hugh/support/trace.hpp>
+#include <hugh/scene/object/geometry/base.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace node {
-    
-      // functions, inlined (inline)
+    namespace object {
 
-      inline bool
-      operator==(geometry::attribute const& lhs, geometry::attribute const& rhs)
-      {
-        TRACE("hugh::scene::node::operator==(geometry::attribute,geometry::attribute)");
+      namespace geometry {
+        
+        // types, exported (class, enum, struct, union, typedef)
+
+        class HUGH_SCENE_EXPORT mesh : public base {
+
+        public:
       
-        return ((&lhs == &rhs) ||
-                ((lhs.position == rhs.position) &&
-                 (lhs.normal   == rhs.normal)   &&
-                 (lhs.tcoord   == rhs.tcoord)   &&
-                 (lhs.tangent  == rhs.tangent)  &&
-                 (lhs.color    == rhs.color)));
-      }
+          using attribute_list_type = base::attribute_list_type;
+          using index_list_type     = base::index_list_type;
+      
+          explicit mesh(attribute_list_type const& /* attributes */,
+                        index_list_type const&     /* indices    */);
+      
+        };
     
-    } // namespace node {
+        // variables, exported (extern)
+
+        // functions, inlined (inline)
+  
+        // functions, exported (extern)
+
+      } // namesapce geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#if defined(HUGH_USE_TRACE)
-#  undef HUGH_USE_TRACE
-#endif
-
-#endif // #if !defined(HUGH_SCENE_NODE_GEOMETRY_INL)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_MESH_HPP)

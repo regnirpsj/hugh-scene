@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitives.hpp                                                       */
+/*  module     :  hugh/scene/object/geometry/sphere.hpp                                           */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_PRIMITIVES_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_SPHERE_HPP)
 
-#define HUGH_SCENE_PRIMITIVES_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRY_SPHERE_HPP
 
 // includes, system
 
@@ -22,27 +22,46 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/cube.hpp>
-#include <hugh/scene/primitive/cylinder.hpp>
-#include <hugh/scene/primitive/icosahedron.hpp>
-#include <hugh/scene/primitive/octahedron.hpp>
-#include <hugh/scene/primitive/sphere.hpp>
-#include <hugh/scene/primitive/tetrahedron.hpp>
+#include <hugh/scene/object/geometry/base.hpp>
 
 namespace hugh {
   
   namespace scene {
-  
-    // types, exported (class, enum, struct, union, typedef)
 
-    // variables, exported (extern)
+    namespace object {
 
-    // functions, inlined (inline)
+      namespace geometry {
+        
+        // types, exported (class, enum, struct, union, typedef)
+
+        class HUGH_SCENE_EXPORT sphere : public base {
+
+        public:
+
+          static unsigned const dflt_subdivision; // == 4
+      
+          explicit sphere(unsigned = dflt_subdivision);
+
+          field::value::single<unsigned> subdivision; //< sub-division levels      
+
+        protected:
+
+          virtual void do_changed(field::base&);
+      
+        };
+    
+        // variables, exported (extern)
+
+        // functions, inlined (inline)
   
-    // functions, exported (extern)
+        // functions, exported (extern)
+
+      } // namespace geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_PRIMITIVES_HPP)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_SPHERE_HPP)

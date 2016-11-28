@@ -25,7 +25,6 @@
 #include <hugh/scene/file.hpp>
 #include <hugh/scene/nodes.hpp>
 #include <hugh/scene/objects.hpp>
-#include <hugh/scene/primitives.hpp>
 #include <hugh/scene/visitors.hpp>
 
 namespace hugh {

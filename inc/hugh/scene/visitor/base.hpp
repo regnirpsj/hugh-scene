@@ -39,25 +39,13 @@ namespace hugh {
       class group;
       class local_light;
       class material_group;
-      class mesh;
       class rotor;
       class select;
       class transform;
       class translator;
     
     } // namespace node {
-
-    namespace primitive {
-
-      class cube;
-      class cylinder;
-      class icosahedron;
-      class octahedron;
-      class sphere;
-      class tetrahedron;
     
-    } // namespace primitive {
-  
     namespace visitor {
 
       class subject;
@@ -78,17 +66,10 @@ namespace hugh {
         virtual void visit(node::group&);
         virtual void visit(node::local_light&);
         virtual void visit(node::material_group&);
-        virtual void visit(node::mesh&);
         virtual void visit(node::rotor&);
         virtual void visit(node::select&);
         virtual void visit(node::transform&);
         virtual void visit(node::translator&);
-        virtual void visit(primitive::cube&);
-        virtual void visit(primitive::cylinder&);
-        virtual void visit(primitive::icosahedron&);
-        virtual void visit(primitive::octahedron&);
-        virtual void visit(primitive::sphere&);
-        virtual void visit(primitive::tetrahedron&);
       
         virtual void print_on(std::ostream&) const;
       

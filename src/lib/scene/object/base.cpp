@@ -18,11 +18,12 @@
 
 // includes, system
 
-#include <ostream> // std::ostream
+#include <glm/gtx/io.hpp> // glm::operator<<
+#include <ostream>        // std::ostream
 
 // includes, project
 
-//#include <>
+#include <glm/gtx/limits.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -48,7 +49,25 @@ namespace hugh {
     
       // variables, exported
   
+      /* static */ base::bounds const base::bounds::invalid
+      (
+       glm::vec3(+std::numeric_limits<glm::vec3>::infinity(),
+                 +std::numeric_limits<glm::vec3>::infinity(),
+                 +std::numeric_limits<glm::vec3>::infinity()),
+       glm::vec3(-std::numeric_limits<glm::vec3>::infinity(),
+                 -std::numeric_limits<glm::vec3>::infinity(),
+                 -std::numeric_limits<glm::vec3>::infinity()),
+       false // invalid
+       );
+
       // functions, exported
+
+      /* explicit */
+      base::bounds::bounds(glm::vec3 const& a, glm::vec3 const& b, bool c)
+        : min(a), max(b), valid(c)
+      { 
+        TRACE("hugh::scene::object::base::bounds::bounds");
+      } 
 
       /* virtual */
       base::~base()
@@ -74,7 +93,8 @@ namespace hugh {
       base::base()
         : field::container         (),
           support::refcounted<base>(),
-          name                     (*this, "name", "")
+          name                     (*this, "name", ""),
+          bbox                     (*this, "bbox", bounds::invalid)
       {
         TRACE("hugh::scene::object::base::base");
       }
@@ -84,15 +104,50 @@ namespace hugh {
       {
         TRACE("hugh::scene::object::base::do_changed");
 
-        if (&f == &name) {
+        if      (&f == &name) {
           // nothing to do
         }
-
+        
+        else if (&f == &bbox) {
+          // nothing to do
+        }
+        
         else {
           field::container::do_changed(f);
         }
       }
     
+      /* virtual */ void
+      base::invalidate_bounds()
+      {
+        TRACE("hugh::scene::object::base::invalidate_bounds");
+
+        if (bbox.get().valid) {
+          bbox = bounds(bbox.get().min, bbox.get().max, false);
+        }
+      }
+
+      std::ostream&
+      operator<<(std::ostream& os, base::bounds const& a)
+      {
+        TRACE_NEVER("hugh::scene::object::operator<<(scene::object::base::bounds)");
+
+        std::ostream::sentry const cerberus(os);
+
+        if (cerberus) {
+          glm::io::format_saver const iofs(os);
+
+          os << glm::io::precision(2) << glm::io::width(4)
+             << '['
+             << a.min                  << ','
+             << a.max                  << ','
+             << ((a.valid) ? "" : "!") << "valid"
+             << ']';
+        }
+
+        return os;
+      }
+
     } // namespace object {
   
   } // namespace scene {

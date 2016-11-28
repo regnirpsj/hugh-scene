@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/base.inl                                                        */
+/*  module     :  hugh/scene/object/geometry/tetrahedron.hpp                                      */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_NODE_BASE_INL)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_TETRAHEDRON_HPP)
 
-#define HUGH_SCENE_NODE_BASE_INL
+#define HUGH_SCENE_OBJECT_GEOMETRY_TETRAHEDRON_HPP
 
 // includes, system
 
@@ -22,47 +22,38 @@
 
 // includes, project
 
-//#include <>
-
-#define HUGH_USE_TRACE
-#undef HUGH_USE_TRACE
-#include <hugh/support/trace.hpp>
+#include <hugh/scene/object/geometry/base.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace node {
+    namespace object {
+
+      namespace geometry {
+        
+        // types, exported (class, enum, struct, union, typedef)
+
+        class HUGH_SCENE_EXPORT tetrahedron : public base {
+
+        public:
+
+          explicit tetrahedron();
+      
+        };
     
-      // functions, inlined (inline)
+        // variables, exported (extern)
 
-      inline bool
-      operator==(base::bounds const& lhs, base::bounds const& rhs)
-      {
-        TRACE("hugh::scene::node::operator==(base::bounds,base::bounds)");
+        // functions, inlined (inline)
+  
+        // functions, exported (extern)
+
+      } // namespace geometry {
       
-        return ((&lhs == &rhs) ||
-                ((lhs.min   == rhs.min) &&
-                 (lhs.max   == rhs.max) &&
-                 (lhs.valid == rhs.valid)));
-      }
-
-      inline bool
-      operator!=(base::bounds const& lhs, base::bounds const& rhs)
-      {
-        TRACE("hugh::scene::node::operator!=(base::bounds,base::bounds)");
-      
-        return !(lhs == rhs);
-      }
-
-    } // namespace node {
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#if defined(HUGH_USE_TRACE)
-#  undef HUGH_USE_TRACE
-#endif
-
-#endif // #if !defined(HUGH_SCENE_NODE_BASE_INL)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_TETRAHEDRON_HPP)

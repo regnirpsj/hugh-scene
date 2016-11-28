@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/icosahedron.cpp                                            */
+/*  module     :  hugh/scene/object/geometry/mesh.cpp                                             */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,7 +14,7 @@
 
 // include i/f header
 
-#include "hugh/scene/primitive/icosahedron.hpp"
+#include "hugh/scene/object/geometry/mesh.hpp"
 
 // includes, system
 
@@ -22,7 +22,7 @@
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -34,52 +34,40 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  using namespace hugh::scene;
-  
   // variables, internal
   
   // functions, internal
 
-  void
-  make_icosahedron(node::geometry::attribute_list_type& /* attr_list */,
-                   node::geometry::index_list_type&     /* index_list */)
-  {
-    TRACE("hugh::scene::primitive::icosahedron::<unnamed>::make_icosahedron");
-  }
-  
 } // namespace {
 
 namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // variables, exported
-    
-      // functions, exported
+    namespace object {
 
-      /* explicit */
-      icosahedron::icosahedron()
-        : node::geometry()
-      {
-        TRACE("hugh::scene::primitive::icosahedron::icosahedron");
+      namespace geometry {
+        
+        // variables, exported
+    
+        // functions, exported
 
-        make_icosahedron(attribute_list_, index_list_);
+        /* explicit */
+        mesh::mesh(attribute_list_type const& a, index_list_type const& b)
+          : base()
+        {
+          TRACE("hugh::scene::object::geometry::mesh::mesh");
+
+          attribute_list_ = a;
+          index_list_     = b;
+
+          compute_bounds();
+          compute_tangents();
+        }
+        
+      } // namespace geometry {
       
-        compute_bounds();
-        compute_tangents();
-      }
-    
-      /* virtual */ void
-      icosahedron::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::primitive::icosahedron::accept");
-
-        v.visit(*this);
-      }
-    
-    } // namespace primitive {
+    } // namespace object {
   
   } // namespace scene {
 

@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/sphere.cpp                                                 */
+/*  module     :  hugh/scene/object/geometry/sphere.cpp                                           */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,7 +14,7 @@
 
 // include i/f header
 
-#include "hugh/scene/primitive/sphere.hpp"
+#include "hugh/scene/object/geometry/sphere.hpp"
 
 // includes, system
 
@@ -25,8 +25,7 @@
 // includes, project
 
 #include <glm/gtx/limits.hpp>
-#include <hugh/scene/primitive/octahedron.hpp>
-#include <hugh/scene/visitor/base.hpp>
+#include <hugh/scene/object/geometry/octahedron.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -38,7 +37,7 @@ namespace {
   
   // types, internal (class, enum, struct, union, typedef)
 
-  using namespace hugh::scene;
+  using namespace hugh::scene::object;
   
   // variables, internal
   
@@ -47,7 +46,7 @@ namespace {
   glm::vec2
   calc_sphere_tcoords(glm::vec3 const& n)
   {
-    TRACE("hugh::scene::primitive::sphere::<unnamed>::calc_sphere_tcoords");
+    TRACE("hugh::scene::object::geometry::sphere::<unnamed>::calc_sphere_tcoords");
 
     using float_type = glm::vec3::value_type;
     
@@ -66,26 +65,24 @@ namespace {
   }
 
   void
-  add_point(glm::vec3 const& pnt, node::geometry::attribute_list_type& alist)
+  add_point(glm::vec3 const& pnt, geometry::base::attribute_list_type& alist)
   {
-    TRACE("hugh::scene::primitive::sphere::<unnamed>::add_point");
+    TRACE("hugh::scene::object::geometry::sphere::<unnamed>::add_point");
     
     glm::vec3 const n(-glm::normalize(pnt));
     glm::vec3 const p(n.xyz() * -0.5f);
-
-    using node::geometry;
     
     alist.push_back(geometry::attribute(p, n, calc_sphere_tcoords(n)));
   }
   
   void
   subdivide_triangle(unsigned i1, unsigned i2, unsigned i3,
-                     unsigned                                    depth,
-                     node::geometry::attribute_list_type& alist,
-                     node::geometry::index_list_type&     ilist,
-                     unsigned&                                   z)
+                     unsigned                             depth,
+                     geometry::base::attribute_list_type& alist,
+                     geometry::base::index_list_type&     ilist,
+                     unsigned&                            z)
   {
-    TRACE("hugh::scene::primitive::sphere::<unnamed>::subdivide_triangle");
+    TRACE("hugh::scene::object::geometry::sphere::<unnamed>::subdivide_triangle");
     
     if (0 == depth) {
       ilist.push_back(i1);
@@ -123,64 +120,60 @@ namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // variables, exported
+    namespace object {
 
-      /* static */ unsigned const sphere::dflt_subdivision(4);
-    
-      // functions, exported
-
-      /* explicit */
-      sphere::sphere(unsigned a)
-        : node::geometry(),
-          subdivision   (*this, "subdivision", a)
-      {
-        TRACE("hugh::scene::primitive::sphere::sphere");
-
-        subdivision.touch();
-      }
-    
-      /* virtual */ void
-      sphere::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::primitive::sphere::accept");
-
-        v.visit(*this);
-      }
-
-      /* virtual */ void
-      sphere::do_changed(field::base& f)
-      {
-        TRACE("hugh::scene::primitive::do_changed");
-      
-        if (&f == &subdivision) {        
-          attribute_list_.clear();
-          index_list_    .clear();
-
-          octahedron const oct;
+      namespace geometry {
         
-          for (auto const& a : oct.attributes.get()) { // why doesn't '*oct.attributes' work here?
-            add_point(a.position, attribute_list_);
-          }
+        // variables, exported
 
-          unsigned running_idx(unsigned((*oct.attributes).size()));
-      
-          for (unsigned i(0); i < (*oct.indices).size(); i += 3) {
-            subdivide_triangle((*oct.indices)[i+0], (*oct.indices)[i+1], (*oct.indices)[i+2],
-                               *subdivision, attribute_list_, index_list_, running_idx);
-          }
-      
-          compute_bounds();
-          compute_tangents();
-        }
-
-        else {
-          node::geometry::do_changed(f);
-        }
-      }
+        /* static */ unsigned const sphere::dflt_subdivision(4);
     
-    } // namespace primitive {
+        // functions, exported
+
+        /* explicit */
+        sphere::sphere(unsigned a)
+          : base       (),
+            subdivision(*this, "subdivision", a)
+        {
+          TRACE("hugh::scene::object::geometry::sphere::sphere");
+
+          subdivision.touch();
+        }
+    
+        /* virtual */ void
+        sphere::do_changed(field::base& f)
+        {
+          TRACE("hugh::scene::object::geometry::do_changed");
+      
+          if (&f == &subdivision) {        
+            attribute_list_.clear();
+            index_list_    .clear();
+
+            octahedron const oct;
+        
+            for (auto const& a : oct.attributes.get()) { // why doesn't '*oct.attributes' work here?
+              add_point(a.position, attribute_list_);
+            }
+
+            unsigned running_idx(unsigned((*oct.attributes).size()));
+      
+            for (unsigned i(0); i < (*oct.indices).size(); i += 3) {
+              subdivide_triangle((*oct.indices)[i+0], (*oct.indices)[i+1], (*oct.indices)[i+2],
+                                 *subdivision, attribute_list_, index_list_, running_idx);
+            }
+      
+            compute_bounds();
+            compute_tangents();
+          }
+
+          else {
+            base::do_changed(f);
+          }
+        }
+
+      } // namespace geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 

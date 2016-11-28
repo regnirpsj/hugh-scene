@@ -49,7 +49,8 @@
 
 #include <hugh/scene/node/group.hpp>
 #include <hugh/scene/node/material_group.hpp>
-#include <hugh/scene/node/mesh.hpp>
+#include <hugh/scene/node/geometry.hpp>
+#include <hugh/scene/object/geometry/mesh.hpp>
 #include <loader/mtl.hpp>
 
 #define HUGH_USE_TRACE
@@ -449,7 +450,8 @@ namespace hugh {
 
           if (!object_list.empty()) {
             using namespace scene::node;
-          
+            using namespace scene::object::geometry;
+            
             result = new group(/* "unnamed" */);
 
             for (auto const& o : object_list) {
@@ -481,7 +483,8 @@ namespace hugh {
               
                   for (unsigned i(std::get<1>(o)); i < (std::get<1>(o) + std::get<2>(o)); ++i) {
                     using support::ostream::operator<<;
-                
+                    using support::ostream::remove;
+                    
                     std::cout << "f[" << i << "]  :" << face_list[i] << '\n'
                               << "f[" << i << "].v:";
 
@@ -489,7 +492,7 @@ namespace hugh {
                       std::cout << vertex_list[f.x - 1] << ',';
                     }
 
-                    std::cout << support::ostream::remove(1) << '\n'
+                    std::cout << remove(1) << '\n'
                               << "f[" << i << "].t:";
 
                     for (auto const& f : face_list[i]) {
@@ -498,7 +501,7 @@ namespace hugh {
                       }
                     }
                 
-                    std::cout << support::ostream::remove(1) << '\n'
+                    std::cout << remove(1) << '\n'
                               << "f[" << i << "].n:";
 
                     for (auto const& f : face_list[i]) {
@@ -507,16 +510,14 @@ namespace hugh {
                       }
                     }
                 
-                    std::cout << support::ostream::remove(1) << "\n\n";
+                    std::cout << remove(1) << "\n\n";
                   }
                 }
 #endif
               
-                geometry::attribute_list_type attrs;
+                mesh::attribute_list_type attrs;
               
                 for (unsigned i(std::get<1>(o)); i < (std::get<1>(o) + std::get<2>(o)); ++i) {
-                  using attribute = geometry::attribute;
-
                   static glm::vec4 const dflt(0.0);
                 
                   switch (face_list[i].size()) {
@@ -573,13 +574,13 @@ namespace hugh {
                     break;
                   }
                 }
-
+                
                 {
-                  geometry::index_list_type idx(attrs.size());
+                  mesh::index_list_type idx(attrs.size());
 
                   std::iota(idx.begin(), idx.end(), 0);
-                
-                  mg->children += new mesh(attrs, idx);
+                  
+                  mg->children += new geometry(new mesh(attrs, idx));
                 }
               }
             

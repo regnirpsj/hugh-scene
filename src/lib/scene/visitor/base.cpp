@@ -24,7 +24,6 @@
 // includes, project
 
 #include <hugh/scene/nodes.hpp>
-#include <hugh/scene/primitives.hpp>
 #include <hugh/scene/visitor/subject.hpp>
 
 #define HUGH_USE_TRACE
@@ -124,14 +123,6 @@ namespace hugh {
       }
 
       /* virtual */ void
-      base::visit(node::mesh& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(node::mesh)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
       base::visit(node::rotor& a)
       {
         TRACE("hugh::scene::visitor::base::visit(node::rotor)");
@@ -163,54 +154,6 @@ namespace hugh {
         visit_base(a);
       }
 
-      /* virtual */ void
-      base::visit(primitive::cube& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::cube)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
-      base::visit(primitive::cylinder& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::cylinder)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
-      base::visit(primitive::icosahedron& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::icosahedron)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
-      base::visit(primitive::octahedron& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::octahedron)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
-      base::visit(primitive::sphere& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::sphere)");
-
-        visit_base(a);
-      }
-
-      /* virtual */ void
-      base::visit(primitive::tetrahedron& a)
-      {
-        TRACE("hugh::scene::visitor::base::visit(primitive::tetrahedron)");
-
-        visit_base(a);
-      }
-    
       /* virtual */ void
       base::print_on(std::ostream& os) const
       {

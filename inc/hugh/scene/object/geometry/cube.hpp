@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/tetrahedron.hpp                                            */
+/*  module     :  hugh/scene/object/geometry/cube.hpp                                             */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_PRIMITIVE_TETRAHEDRON_HPP)
+#if !defined(HUGH_SCENE_OBJECT_GEOMETRY_CUBE_HPP)
 
-#define HUGH_SCENE_PRIMITIVE_TETRAHEDRON_HPP
+#define HUGH_SCENE_OBJECT_GEOMETRY_CUBE_HPP
 
 // includes, system
 
@@ -22,38 +22,38 @@
 
 // includes, project
 
-#include <hugh/scene/node/geometry.hpp>
+#include <hugh/scene/object/geometry/base.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
-    
-      // types, exported (class, enum, struct, union, typedef)
+    namespace object {
 
-      class HUGH_SCENE_EXPORT tetrahedron : public node::geometry {
+      namespace geometry {
+        
+        // types, exported (class, enum, struct, union, typedef)
 
-      public:
+        class HUGH_SCENE_EXPORT cube : public base {
 
-        using subject_inherited = node::geometry;
+        public:
 
-        explicit tetrahedron();
+          explicit cube();
       
-        virtual void accept(visitor::base&);
-      
-      };
+        };
     
-      // variables, exported (extern)
+        // variables, exported (extern)
 
-      // functions, inlined (inline)
+        // functions, inlined (inline)
   
-      // functions, exported (extern)
+        // functions, exported (extern)
 
-    } // namespace primitive {
+      } // namespace geometry {
+      
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_PRIMITIVE_TETRAHEDRON_HPP)
+#endif // #if !defined(HUGH_SCENE_OBJECT_GEOMETRY_CUBE_HPP)

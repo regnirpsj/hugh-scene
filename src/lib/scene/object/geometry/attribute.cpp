@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/geometry.cpp                                                    */
+/*  module     :  hugh/scene/object/geometry/attribute.cpp                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,15 +14,16 @@
 
 // include i/f header
 
-#include "hugh/scene/node/geometry.hpp"
+#include "hugh/scene/object/geometry/attribute.hpp"
 
 // includes, system
 
-//#include <>
+#include <glm/gtx/io.hpp> // glm::operator<<
+#include <ostream>        // std::ostream
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -44,46 +45,49 @@ namespace hugh {
   
   namespace scene {
 
-    namespace node {
-    
-      // variables, exported
-    
-      // functions, exported
-    
-      /* explicit */
-      geometry::geometry(object::geometry::base* a)
-        : base  (),
-          object(*this, "object", a)
-      {
-        TRACE("hugh::scene::node::geometry::geometry");
-      }
+    namespace object {
 
-      /* virtual */ void
-      geometry::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::node::geometry::accept");
-
-        v.visit(*this);
-      }
-
-      void
-      geometry::compute_bounds()
-      {
-        TRACE("hugh::scene::node::geometry::compute_bounds");
-
-        bounds                         b(bounds::invalid);
-        object_ptr_type::element_type* o(object->get());
+      namespace geometry {
         
-        if (o) {
-          o->compute_bounds();
+        // variables, exported
+    
+        // functions, exported
 
-          b = o->bbox.get();
+        /* explicit */
+        attribute::attribute(glm::vec3 const& a, glm::vec3 const& b, glm::vec2 const& c,
+                             glm::vec4 const& d, glm::vec4 const& e)
+          : position(a), normal(b), tcoord(c), tangent(d), color(e)
+        {
+          TRACE("hugh::scene::object::attribute::attribute");
+        }
+    
+        std::ostream&
+        operator<<(std::ostream& os, attribute const& a)
+        {
+          TRACE_NEVER("hugh::scene::object::operator<<(attribute)");
+      
+          std::ostream::sentry const cerberus(os);
+
+          if (cerberus) {
+            glm::io::format_saver const iofs(os);
+
+            os << glm::io::precision(2)
+               << glm::io::width(1 + 2 + 1 + unsigned(os.precision()))
+               << '['
+               << "v:"  << a.position << ','
+               << "n:"  << a.normal   << ','
+               << "tc:" << a.tcoord   << ','
+               << "t:"  << a.tangent  << ','
+               << "c:"  << a.color
+               << ']';
+          }
+
+          return os;
         }
 
-        bbox = b;
-      }
+      } // namespace geometry {
       
-    } // namespace node {
+    } // namespace object {
   
   } // namespace scene {
 

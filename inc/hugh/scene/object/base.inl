@@ -6,15 +6,15 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/primitive/sphere.hpp                                                 */
+/*  module     :  hugh/scene/object/base.inl                                                      */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_PRIMITIVE_SPHERE_HPP)
+#if !defined(HUGH_SCENE_OBJECT_BASE_INL)
 
-#define HUGH_SCENE_PRIMITIVE_SPHERE_HPP
+#define HUGH_SCENE_OBJECT_BASE_INL
 
 // includes, system
 
@@ -22,46 +22,47 @@
 
 // includes, project
 
-#include <hugh/scene/node/geometry.hpp>
+//#include <>
+
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 namespace hugh {
   
   namespace scene {
 
-    namespace primitive {
+    namespace object {
     
-      // types, exported (class, enum, struct, union, typedef)
-
-      class HUGH_SCENE_EXPORT sphere : public node::geometry {
-
-      public:
-
-        using subject_inherited = node::geometry;
-
-        static unsigned const dflt_subdivision; // == 4
-      
-        explicit sphere(unsigned = dflt_subdivision);
-
-        field::value::single<unsigned> subdivision; //< sub-division levels
-      
-        virtual void accept(visitor::base&);
-
-      protected:
-
-        virtual void do_changed(field::base&);
-      
-      };
-    
-      // variables, exported (extern)
-
       // functions, inlined (inline)
-  
-      // functions, exported (extern)
 
-    } // namespace primitive {
+      inline bool
+      operator==(base::bounds const& lhs, base::bounds const& rhs)
+      {
+        TRACE("hugh::scene::object::operator==(base::bounds,base::bounds)");
+      
+        return ((&lhs == &rhs) ||
+                ((lhs.min   == rhs.min) &&
+                 (lhs.max   == rhs.max) &&
+                 (lhs.valid == rhs.valid)));
+      }
+
+      inline bool
+      operator!=(base::bounds const& lhs, base::bounds const& rhs)
+      {
+        TRACE("hugh::scene::object::operator!=(base::bounds,base::bounds)");
+      
+        return !(lhs == rhs);
+      }
+
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_PRIMITIVE_SPHERE_HPP)
+#if defined(HUGH_USE_TRACE)
+#  undef HUGH_USE_TRACE
+#endif
+
+#endif // #if !defined(HUGH_SCENE_OBJECT_BASE_INL)

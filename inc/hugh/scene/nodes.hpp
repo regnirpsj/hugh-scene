@@ -29,7 +29,6 @@
 #include <hugh/scene/node/group.hpp>
 #include <hugh/scene/node/local_light.hpp>
 #include <hugh/scene/node/material_group.hpp>
-#include <hugh/scene/node/mesh.hpp>
 #include <hugh/scene/node/rotor.hpp>
 #include <hugh/scene/node/select.hpp>
 #include <hugh/scene/node/transform.hpp>
