@@ -48,7 +48,7 @@ namespace hugh {
       
         virtual void print_on(std::ostream&) const;
       
-      private:
+      protected:
     
         std::ostream& os_;
         order         order_;
