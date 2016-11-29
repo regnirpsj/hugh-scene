@@ -39,12 +39,11 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_node_geometry_op_equal_compare)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_node_geometry_ctor)
 {
   using namespace hugh::scene;
 
-  node::geometry::attribute const a1;
-  node::geometry::attribute const a2;
+  node::geometry const g;
   
-  BOOST_CHECK(a1 == a2);
+  BOOST_CHECK(nullptr == *g.object);
 }

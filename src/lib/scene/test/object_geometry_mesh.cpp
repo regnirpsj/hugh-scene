@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/primitive_cube.cpp                                              */
+/*  module     :  hugh/scene/test/object_geometry_mesh.cpp                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,11 +18,7 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/cube.hpp>
-
-#define HUGH_USE_TRACE
-#undef HUGH_USE_TRACE
-#include <hugh/support/trace.hpp>
+#include <hugh/scene/object/geometry/mesh.hpp>
 
 // internal unnamed namespace
 
@@ -39,12 +35,16 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_cube_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_mesh_ctor)
 {
-  using namespace hugh::scene::primitive;
+  using namespace hugh::scene::object::geometry;
+
+  mesh::attribute_list_type const a;
+  mesh::index_list_type const     i;
+  mesh const                      m(a, i);
   
-  cube const c;
-  
-  BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(c);
+  BOOST_CHECK       (m.bbox->valid);
+  BOOST_CHECK       (m.attributes->empty());
+  BOOST_CHECK       (m.indices->empty());  
+  BOOST_TEST_MESSAGE(m);
 }

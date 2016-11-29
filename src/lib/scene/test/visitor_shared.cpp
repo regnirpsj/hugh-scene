@@ -27,7 +27,6 @@
 
 #include <hugh/scene/nodes.hpp>
 #include <hugh/scene/objects.hpp>
-#include <hugh/scene/primitives.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -61,7 +60,6 @@ namespace hugh {
         TRACE("hugh::scene::test::make_scene");
         
         using namespace node;
-        using namespace primitive;
     
         group* root(new group);
     
@@ -139,11 +137,13 @@ namespace hugh {
             
                 for (auto const& m : materials) {
                   {
+                    using namespace object::geometry;
+                    
                     std::array<geometry*, 3> const primitives = {
                       {
-                        new cube,
-                        new sphere,
-                        new tetrahedron,
+                        new geometry(new cube),
+                        new geometry(new sphere),
+                        new geometry(new tetrahedron),
                       }
                     };
                 

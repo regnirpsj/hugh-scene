@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/primitive_icosahedron.cpp                                       */
+/*  module     :  hugh/scene/test/object_geometry_octahedron.cpp                                  */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/icosahedron.hpp>
+#include <hugh/scene/object/geometry/octahedron.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -39,12 +39,14 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_icosahedron_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_octahedron_ctor)
 {
-  using namespace hugh::scene::primitive;
+  using namespace hugh::scene::object::geometry;
   
-  icosahedron const i;
+  octahedron const o;
   
-  BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(i);
+  BOOST_CHECK       ( o.bbox->valid);
+  BOOST_CHECK       (!o.attributes->empty());
+  BOOST_CHECK       (!o.indices->empty());  
+  BOOST_TEST_MESSAGE(o);
 }

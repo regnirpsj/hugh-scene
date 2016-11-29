@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/primitive_sphere.cpp                                            */
+/*  module     :  hugh/scene/test/object_geometry_icosahedron.cpp                                 */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/sphere.hpp>
+#include <hugh/scene/object/geometry/icosahedron.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -39,25 +39,15 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_icosahedron_ctor,
+                     *boost::unit_test::expected_failures(2))
 {
-  using namespace hugh::scene::primitive;
+  using namespace hugh::scene::object::geometry;
   
-  sphere const c(0);
+  icosahedron const i;
   
-  BOOST_CHECK       (0 == *c.subdivision);
-  BOOST_TEST_MESSAGE(c);
-}
-
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_sphere_subdiv)
-{
-  using namespace hugh::scene::primitive;
-  
-  sphere c(0);
-
-  for (unsigned i(4); i < 8; ++i) {
-    c.subdivision = i;
-  
-    BOOST_CHECK(i == *c.subdivision);
-  }
+  BOOST_CHECK       ( i.bbox->valid);
+  BOOST_CHECK       (!i.attributes->empty());
+  BOOST_CHECK       (!i.indices->empty());  
+  BOOST_TEST_MESSAGE(i);
 }

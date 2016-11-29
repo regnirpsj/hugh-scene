@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/primitive_octahedron.cpp                                        */
+/*  module     :  hugh/scene/test/object_geometry_cube.cpp                                        */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/octahedron.hpp>
+#include <hugh/scene/object/geometry/cube.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -39,12 +39,14 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_octahedron_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_cube_ctor)
 {
-  using namespace hugh::scene::primitive;
+  using namespace hugh::scene::object::geometry;
   
-  octahedron const o;
+  cube const c;
   
-  BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(o);
+  BOOST_CHECK       ( c.bbox->valid);
+  BOOST_CHECK       (!c.attributes->empty());
+  BOOST_CHECK       (!c.indices->empty());  
+  BOOST_TEST_MESSAGE(c);
 }

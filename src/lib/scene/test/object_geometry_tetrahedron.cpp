@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/primitive_tetrahedron.cpp                                       */
+/*  module     :  hugh/scene/test/object_geometry_tetrahedron.cpp                                 */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,7 @@
 
 // includes, project
 
-#include <hugh/scene/primitive/tetrahedron.hpp>
+#include <hugh/scene/object/geometry/tetrahedron.hpp>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -39,12 +39,14 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_primitive_tetrahedron_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_tetrahedron_ctor)
 {
-  using namespace hugh::scene::primitive;
+  using namespace hugh::scene::object::geometry;
   
-  tetrahedron const c;
+  tetrahedron const t;
   
-  BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(c);
+  BOOST_CHECK       ( t.bbox->valid);
+  BOOST_CHECK       (!t.attributes->empty());
+  BOOST_CHECK       (!t.indices->empty());  
+  BOOST_TEST_MESSAGE(t);
 }

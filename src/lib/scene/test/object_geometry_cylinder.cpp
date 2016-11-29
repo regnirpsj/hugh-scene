@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/test/node_mesh.cpp                                                   */
+/*  module     :  hugh/scene/test/object_geometry_cylinder.cpp                                    */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -18,7 +18,11 @@
 
 // includes, project
 
-#include <hugh/scene/node/mesh.hpp>
+#include <hugh/scene/object/geometry/cylinder.hpp>
+
+#define HUGH_USE_TRACE
+#undef HUGH_USE_TRACE
+#include <hugh/support/trace.hpp>
 
 // internal unnamed namespace
 
@@ -35,14 +39,34 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_hugh_scene_node_mesh_ctor)
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_cylinder_ctor,
+                     *boost::unit_test::expected_failures(2))
 {
-  using namespace hugh::scene::node;
-
-  mesh::attribute_list_type const a;
-  mesh::index_list_type const     i;
-  mesh const                      m(a, i);
+  using namespace hugh::scene::object::geometry;
   
-  BOOST_CHECK       (true);
-  BOOST_TEST_MESSAGE(m);
+  cylinder const c;
+  
+  BOOST_CHECK       ( c.bbox->valid);
+  BOOST_CHECK       (!c.attributes->empty()); // FAIL
+  BOOST_CHECK       (!c.indices->empty());    // FAIL
+  BOOST_CHECK       (cylinder::dflt_sides == *c.sides);
+  BOOST_TEST_MESSAGE(c);
+}
+
+BOOST_AUTO_TEST_CASE(test_hugh_scene_object_geometry_cylinder_sides)
+{
+  using namespace hugh::scene::object::geometry;
+  
+  cylinder c;
+  
+  for (unsigned i(3); i <= 384; i *= 2) {
+    c.sides = i;
+  
+    BOOST_CHECK       (c.bbox->valid);
+    BOOST_CHECK       (i == *c.sides);
+    BOOST_TEST_MESSAGE(std::right << std::setfill(' ')
+                       << "sides:"  << std::setw(3) << *c.sides
+                       << ", attr:" << std::setw(5) << c.attributes->size()
+                       << ", idx:"  << std::setw(5) << c.indices->size());
+  }
 }
