@@ -43,7 +43,7 @@ namespace {
   namespace visitor {
     
     class count  : public hugh::scene::visitor::bfs,
-                    public hugh::scene::visitor::dfs {
+                   public hugh::scene::visitor::dfs {
 
     public:
       
@@ -177,7 +177,7 @@ namespace {
       timer tm;
 
       for (unsigned c(1); c <= 6; ++c) {
-        unsigned const lvl(7 + (6 / c));
+        unsigned const lvl(8 + (6 / c));
         
         for (unsigned l(0); l < lvl; ++l) {
 #if defined(HUGH_VERBOSE)
