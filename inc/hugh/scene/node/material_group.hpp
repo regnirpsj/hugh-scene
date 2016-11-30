@@ -23,7 +23,7 @@
 // includes, project
 
 #include <hugh/scene/node/group.hpp>
-#include <hugh/scene/object/material.hpp>
+#include <hugh/scene/object/materials.hpp>
 
 namespace hugh {
   
@@ -38,7 +38,7 @@ namespace hugh {
       public:
 
         using subject_inherited = group;
-        using source_ptr_type   = boost::intrusive_ptr<object::material>;
+        using source_ptr_type   = boost::intrusive_ptr<object::material::base>;
       
         field::value::single<source_ptr_type> material; //< source
       

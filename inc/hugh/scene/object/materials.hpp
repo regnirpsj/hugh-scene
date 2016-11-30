@@ -6,56 +6,43 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/loader/mtl.hpp                                                       */
+/*  module     :  hugh/scene/object/materials.hpp                                                 */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
 /**************************************************************************************************/
 
-#if !defined(HUGH_SCENE_LOADER_MTL_HPP)
+#if !defined(HUGH_SCENE_OBJECT_MATERIALS_HPP)
 
-#define HUGH_SCENE_LOADER_MTL_HPP
+#define HUGH_SCENE_OBJECT_MATERIALS_HPP
 
 // includes, system
 
-#include <boost/intrusive_ptr.hpp> // boost::intrusive_ptr<>
-#include <iosfwd>                  // std::istream, std::ostream (fwd decl)
-#include <string>                  // std::string
-#include <vector>                  // std::vector<>
+//#include <>
 
 // includes, project
 
-#include <hugh/scene/object/materials.hpp>
+#include <hugh/scene/object/material/simple.hpp>
+#include <hugh/scene/object/material/textured.hpp>
 
 namespace hugh {
   
   namespace scene {
-  
-    namespace file {
 
-      namespace mtl {
-      
-        // types, exported (class, enum, struct, union, typedef)
-
-        using list_type = std::vector<boost::intrusive_ptr<object::material::simple>>;
-      
-        // variables, exported (extern)
-
-        // functions, inlined (inline)
-  
-        // functions, exported (extern)
-
-        list_type load(std::istream&);
-        list_type load(std::string const&);
-        bool      save(std::ostream&,      list_type const&);
-        bool      save(std::string const&, list_type const&);
-      
-      } // namespace mtl {
+    namespace object {
     
-    } // namespace file {
+      // types, exported (class, enum, struct, union, typedef)
+      
+      // variables, exported (extern)
+
+      // functions, inlined (inline)
+  
+      // functions, exported (extern)
+    
+    } // namespace object {
   
   } // namespace scene {
 
 } // namespace hugh {
 
-#endif // #if !defined(HUGH_SCENE_LOADER_MTL_HPP)
+#endif // #if !defined(HUGH_SCENE_OBJECT_MATERIAL_HPP)

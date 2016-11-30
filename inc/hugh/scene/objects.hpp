@@ -25,7 +25,7 @@
 #include <hugh/scene/object/cameras.hpp>
 #include <hugh/scene/object/geometries.hpp>
 #include <hugh/scene/object/lights.hpp>
-#include <hugh/scene/object/material.hpp>
+#include <hugh/scene/object/materials.hpp>
 #include <hugh/scene/object/textures.hpp>
 
 namespace hugh {

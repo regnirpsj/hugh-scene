@@ -258,7 +258,7 @@ namespace hugh {
           list_type result;
 
           {
-            result.push_back(new scene::object::material);
+            result.push_back(new scene::object::material::simple);
 
             (*result.rbegin())->name = "default material";
           }
@@ -443,7 +443,7 @@ namespace hugh {
             }
           
             else if ("newmtl" == *tokens.begin()) { // newmtl <string>
-              result.push_back(new scene::object::material);
+              result.push_back(new scene::object::material::simple);
 
               (*result.rbegin())->name = boost::trim_copy(std::string(line.begin() +
                                                                       (*tokens.begin()).length(),

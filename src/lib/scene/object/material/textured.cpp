@@ -6,7 +6,7 @@
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
-/*  module     :  hugh/scene/node/material_group.cpp                                              */
+/*  module     :  hugh/scene/object/material/textured.cpp                                         */
 /*  project    :                                                                                  */
 /*  description:                                                                                  */
 /*                                                                                                */
@@ -14,7 +14,7 @@
 
 // include i/f header
 
-#include "hugh/scene/node/material_group.hpp"
+#include "hugh/scene/object/material/textured.hpp"
 
 // includes, system
 
@@ -22,7 +22,7 @@
 
 // includes, project
 
-#include <hugh/scene/visitor/base.hpp>
+//#include <>
 
 #define HUGH_USE_TRACE
 #undef HUGH_USE_TRACE
@@ -44,29 +44,34 @@ namespace hugh {
   
   namespace scene {
 
-    namespace node {
-    
-      // variables, exported
-    
-      // functions, exported
+    namespace object {
 
-      /* explicit */
-      material_group::material_group()
-        : group   (),
-          material(*this, "material", new object::material::simple)
-      {
-        TRACE("hugh::scene::node::material_group::material_group");
-      }
-    
-      /* virtual */ void
-      material_group::accept(visitor::base& v)
-      {
-        TRACE("hugh::scene::node::material_group::accept");
+      namespace material {
+        
+        // variables, exported
 
-        v.visit(*this);
-      }
-    
-    } // namespace node {
+        /* static */ textured const   textured::dflt_material;
+        /* static */ glm::uvec2 const textured::dflt_tex_size (1, 1);
+        /* static */ glm::uvec4 const textured::dflt_tex_black(0);
+        /* static */ glm::uvec4 const textured::dflt_tex_white(1);
+
+        // functions, exported
+
+        /* explicit */
+        textured::textured(simple::rep const& a,
+                           texture_type* b, texture_type* c, texture_type* d, texture_type* e)
+          : simple  (a),
+            ambient (*this, "ambient",  b),
+            diffuse (*this, "diffuse",  c),
+            emission(*this, "emission", d),
+            specular(*this, "specular", e)
+        {
+          TRACE("hugh::scene::object::material::textured::textured");
+        }
+        
+      } // namespace material {
+
+    } // namespace object {
   
   } // namespace scene {
 

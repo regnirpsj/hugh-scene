@@ -54,11 +54,13 @@ list(APPEND SRC node/transform.cpp)
 list(APPEND SRC node/translator.cpp)
 
 list(APPEND SRC object/base.cpp)
+
 list(APPEND SRC object/camera/base.cpp)
 list(APPEND SRC object/camera/frustum.cpp)
 list(APPEND SRC object/camera/orthographic.cpp)
 list(APPEND SRC object/camera/perspective.cpp)
 list(APPEND SRC object/camera/viewport.cpp)
+
 list(APPEND SRC object/geometry/attribute.cpp)
 list(APPEND SRC object/geometry/base.cpp)
 list(APPEND SRC object/geometry/cube.cpp)
@@ -69,12 +71,17 @@ list(APPEND SRC object/geometry/octahedron.cpp)
 list(APPEND SRC object/geometry/sphere.cpp)
 #list(APPEND SRC object/geometry/triangle.cpp)
 list(APPEND SRC object/geometry/tetrahedron.cpp)
+
 list(APPEND SRC object/light/area.cpp)
 list(APPEND SRC object/light/base.cpp)
 list(APPEND SRC object/light/directional.cpp)
 list(APPEND SRC object/light/positional.cpp)
 list(APPEND SRC object/light/spot.cpp)
-list(APPEND SRC object/material.cpp)
+
+list(APPEND SRC object/material/base.cpp)
+list(APPEND SRC object/material/simple.cpp)
+list(APPEND SRC object/material/textured.cpp)
+
 list(APPEND SRC object/texture/base.cpp)
 list(APPEND SRC object/texture/d1.cpp)
 list(APPEND SRC object/texture/d2.cpp)
