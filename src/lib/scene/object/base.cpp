@@ -60,9 +60,10 @@ namespace hugh {
        false // invalid
        );
 
+      /* static */ base::bounds const base::bounds::null(glm::vec3(0), glm::vec3(0), true);
+      
       // functions, exported
-
-      /* explicit */
+      
       base::bounds::bounds(glm::vec3 const& a, glm::vec3 const& b, bool c)
         : min(a), max(b), valid(c)
       { 
@@ -80,7 +81,7 @@ namespace hugh {
       {
         TRACE_NEVER("hugh::scene::object::base::print_on");
 
-        os << '[';
+        os << '[' << std::boolalpha;
       
         field::container::print_on(os);
 

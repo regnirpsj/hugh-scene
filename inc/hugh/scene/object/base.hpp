@@ -46,14 +46,15 @@ namespace hugh {
         public:
 
           static bounds const invalid; // { [+inf, +inf, +inf], [-inf, -inf, -inf], false, }
+          static bounds const null;    // { [   0,    0,    0], [   0,    0,    0],  true, }
 
           glm::vec3 min;
           glm::vec3 max;
           bool      valid;
 
-          explicit bounds(glm::vec3 const& /* min */   = invalid.min,
-                          glm::vec3 const& /* max */   = invalid.max,
-                          bool             /* valid */ = invalid.valid);
+          bounds(glm::vec3 const& /* min */   = invalid.min,
+                 glm::vec3 const& /* max */   = invalid.max,
+                 bool             /* valid */ = invalid.valid);
         
         };
         
