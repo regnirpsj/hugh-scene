@@ -63,6 +63,8 @@ namespace hugh {
           : object::base()
         {
           TRACE("hugh::scene::object::material::base::base");
+
+          bbox = object::base::bounds::null;
         }
         
       } // namespace material {

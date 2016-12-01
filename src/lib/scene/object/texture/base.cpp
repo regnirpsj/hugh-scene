@@ -69,6 +69,8 @@ namespace hugh {
           : object::base()
         {
           TRACE("hugh::scene::object::base::base");
+
+          bbox = object::base::bounds::null;
         }
 
         /* virtual */ bool
