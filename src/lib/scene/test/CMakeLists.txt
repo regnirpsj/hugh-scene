@@ -31,7 +31,11 @@ LIST(APPEND SRC node_select.cpp)
 LIST(APPEND SRC node_transform.cpp)
 LIST(APPEND SRC node_translator.cpp)
 
-LIST(APPEND SRC object_camera.cpp)
+LIST(APPEND SRC object_camera_frustum.cpp)
+LIST(APPEND SRC object_camera_orthographic.cpp)
+LIST(APPEND SRC object_camera_perspective.cpp)
+LIST(APPEND SRC object_camera_viewport.cpp)
+
 LIST(APPEND SRC object_geometry_cube.cpp)
 LIST(APPEND SRC object_geometry_cylinder.cpp)
 LIST(APPEND SRC object_geometry_icosahedron.cpp)
@@ -39,9 +43,17 @@ LIST(APPEND SRC object_geometry_mesh.cpp)
 LIST(APPEND SRC object_geometry_octahedron.cpp)
 LIST(APPEND SRC object_geometry_sphere.cpp)
 LIST(APPEND SRC object_geometry_tetrahedron.cpp)
-LIST(APPEND SRC object_light.cpp)
-LIST(APPEND SRC object_material.cpp)
-LIST(APPEND SRC object_texture.cpp)
+
+LIST(APPEND SRC object_light_area.cpp)
+LIST(APPEND SRC object_light_directional.cpp)
+LIST(APPEND SRC object_light_positional.cpp)
+LIST(APPEND SRC object_light_rep.cpp)
+LIST(APPEND SRC object_light_spot.cpp)
+
+LIST(APPEND SRC object_material_simple.cpp)
+LIST(APPEND SRC object_material_textured.cpp)
+
+LIST(APPEND SRC object_textures.cpp)
 
 add_definitions(-DGLI_ROOT_DIR=${GLI_ROOT_DIR})
 add_definitions(-DCMAKE_INSTALL_PREFIX=\"${CMAKE_INSTALL_PREFIX}\")
