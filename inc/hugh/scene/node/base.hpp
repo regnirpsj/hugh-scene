@@ -45,7 +45,7 @@ namespace hugh {
         field::value::single<unsigned> travmask; //< traversal mask
         parent_field_type const        parent;   //< parent node
 
-        virtual ~base() noexcept(false) =0;
+        virtual ~base() =0;
       
         virtual void accept(visitor::base&) =0;
 

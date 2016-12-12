@@ -51,7 +51,7 @@ namespace hugh {
       // functions, exported
     
       /* virtual */
-      base::~base() noexcept(false) 
+      base::~base()
       {
         TRACE("hugh::scene::node::base::~base");
       }
