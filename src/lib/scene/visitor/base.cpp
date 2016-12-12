@@ -166,7 +166,7 @@ namespace hugh {
 
       /* explicit */
       base::base()
-        : printable()
+        : support::printable()
       {
         TRACE("hugh::scene::visitor::base::base");
       }
