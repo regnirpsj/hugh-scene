@@ -304,7 +304,7 @@ namespace hugh {
                     if (tcoord_list.empty()) { c.y = 0; }
                     if (normal_list.empty()) { c.z = 0; }
                   }
-                
+                  
                   f.push_back(c);
                 }
               }
@@ -455,11 +455,11 @@ namespace hugh {
             result = new group(/* "unnamed" */);
 
             for (auto const& o : object_list) {
+              material_group* mg(new material_group);
               auto const&     found(std::find_if(material_list.begin(), material_list.end(),
                                                  [o](mtl::list_type::const_reference v){
                                                    return (std::get<3>(o) == v->name.get());
                                                  }));
-              material_group* mg(new material_group);
             
               if (material_list.end() != found) {
                 mg->name     = std::get<3>(o);
@@ -467,7 +467,6 @@ namespace hugh {
               }
             
               {
-
 #if 0 // defined(HUGH_USE_TRACE)
                 {
                   glm::io::format_saver const iofs(std::cout);
@@ -510,15 +509,17 @@ namespace hugh {
                       }
                     }
                 
-                    std::cout << remove(1) << "\n\n";
+                    std::cout << remove(1) << "\n";
                   }
                 }
 #endif
               
                 mesh::attribute_list_type attrs;
-              
+
+                attrs.reserve(vertex_list.size());
+                
                 for (unsigned i(std::get<1>(o)); i < (std::get<1>(o) + std::get<2>(o)); ++i) {
-                  static glm::vec4 const dflt(0.0);
+                  static glm::vec4 const dflt(0.0f, 0.0f, 0.0f, 0.0f);
                 
                   switch (face_list[i].size()) {
                   case 3:
@@ -587,7 +588,7 @@ namespace hugh {
               result->children += mg;
             }
           
-#if defined(HUGH_USE_TRACE)
+#if 0 // defined(HUGH_USE_TRACE)
             {
               glm::io::format_saver const iofs(std::cout);
 
