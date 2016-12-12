@@ -14,12 +14,14 @@
 
 // includes, system
 
-#include <array> // std::array<>
+#include <array>          // std::array<>
+#include <glm/gtx/io.hpp> // glm::operator<<
 
 // includes, project
 
-#include <hugh/scene/node/group.hpp>
-#include <hugh/scene/visitor/print.hpp>
+#include <hugh/scene/nodes.hpp>
+#include <hugh/scene/objects.hpp>
+#include <hugh/scene/visitors.hpp>
 #include <hugh/support/chrono.hpp>
 #include <hugh/support/chrono_io.hpp>
 #include <hugh/support/type_info.hpp>
@@ -61,14 +63,14 @@ namespace {
 
   std::array<std::string const, 2> const cube = {
     {
-      { "v 0.000000 2.000000 2.000000\n"
-        "v 0.000000 0.000000 2.000000\n"
-        "v 2.000000 0.000000 2.000000\n"
-        "v 2.000000 2.000000 2.000000\n"
-        "v 0.000000 2.000000 0.000000\n"
-        "v 0.000000 0.000000 0.000000\n"
-        "v 2.000000 0.000000 0.000000\n"
-        "v 2.000000 2.000000 0.000000\n" },
+      { /* 1 */ "v 0.000000 2.000000 2.000000\n"
+        /* 2 */ "v 0.000000 0.000000 2.000000\n"
+        /* 3 */ "v 2.000000 0.000000 2.000000\n"
+        /* 4 */ "v 2.000000 2.000000 2.000000\n"
+        /* 5 */ "v 0.000000 2.000000 0.000000\n"
+        /* 6 */ "v 0.000000 0.000000 0.000000\n"
+        /* 7 */ "v 2.000000 0.000000 0.000000\n"
+        /* 8 */ "v 2.000000 2.000000 0.000000\n" },
 
       { "f 1 2 3 4\n"
         "f 8 7 6 5\n"
@@ -76,6 +78,42 @@ namespace {
         "f 5 1 4 8\n"
         "f 5 6 2 1\n"
         "f 2 6 7 3\n" },
+    }
+  };
+  
+  std::array<std::string const, 2> const cube2 = {
+    {
+      { /*  1 */ "v 0.000000 2.000000 2.000000\n"
+        /*  2 */ "v 0.000000 0.000000 2.000000\n"
+        /*  3 */ "v 2.000000 0.000000 2.000000\n"
+        /*  4 */ "v 2.000000 2.000000 2.000000\n"
+        /*  5 */ "v 2.000000 2.000000 0.000000\n"
+        /*  6 */ "v 2.000000 0.000000 0.000000\n"
+        /*  7 */ "v 0.000000 0.000000 0.000000\n"
+        /*  8 */ "v 0.000000 2.000000 0.000000\n"
+        /*  9 */ "v 2.000000 2.000000 2.000000\n"
+        /* 10 */ "v 2.000000 0.000000 2.000000\n"
+        /* 11 */ "v 2.000000 0.000000 0.000000\n"
+        /* 12 */ "v 2.000000 2.000000 0.000000\n"
+        /* 13 */ "v 0.000000 2.000000 0.000000\n"
+        /* 14 */ "v 0.000000 2.000000 2.000000\n"
+        /* 15 */ "v 2.000000 2.000000 2.000000\n"
+        /* 16 */ "v 2.000000 2.000000 0.000000\n"
+        /* 17 */ "v 0.000000 2.000000 0.000000\n"
+        /* 18 */ "v 0.000000 0.000000 0.000000\n"
+        /* 19 */ "v 0.000000 0.000000 2.000000\n"
+        /* 20 */ "v 0.000000 2.000000 2.000000\n"
+        /* 21 */ "v 0.000000 0.000000 2.000000\n"
+        /* 22 */ "v 0.000000 0.000000 0.000000\n"
+        /* 23 */ "v 2.000000 0.000000 0.000000\n"
+        /* 24 */ "v 2.000000 0.000000 2.000000\n" },
+
+      { "f  1  2  3  4\n"
+        "f  5  6  7  8\n"
+        "f  9 10 11 12\n"
+        "f 13 14 15 16\n"
+        "f 17 18 19 20\n"
+        "f 21 22 23 24\n" },
     }
   };
   
@@ -120,8 +158,10 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_cube)
   for (auto const& s : cube) {
     str << s << '\n';
   }
-  
-  BOOST_CHECK(nullptr != hugh::scene::file::obj::load(str));
+
+  using namespace hugh::scene;
+
+  BOOST_CHECK(nullptr != file::obj::load(str));
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_squares)
@@ -131,8 +171,82 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_squares)
   for (auto const& s : squares) {
     str << s << '\n';
   }
+
+  using namespace hugh::scene;
+
+  BOOST_CHECK(nullptr != file::obj::load(str));
+}
+
+BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_cube_compare)
+{
+  using namespace hugh::scene;
+
+  std::unique_ptr<node::group> g1;
   
-  BOOST_CHECK(nullptr != hugh::scene::file::obj::load(str));
+  {
+    std::stringstream str;
+
+    for (auto const& s : cube) {
+      str << s << '\n';
+    }
+
+    g1.reset(file::obj::load(str));
+    
+    BOOST_CHECK(nullptr != g1);
+  }
+
+  std::unique_ptr<node::group> g2;
+  
+  {
+    std::stringstream str;
+
+    for (auto const& s : cube2) {
+      str << s << '\n';
+    }
+
+    g2.reset(file::obj::load(str));
+    
+    BOOST_CHECK(nullptr != g2);
+  }
+
+  struct geometry_visitor : public visitor::dfs {
+
+    using attribute_list_type = object::geometry::base::attribute_list_type;
+    using index_list_type     = object::geometry::base::index_list_type;
+    using pair_type           = std::pair<attribute_list_type, index_list_type>;
+    using pair_list_type      = std::vector<pair_type>;
+
+    virtual void visit(node::geometry& a)
+    {
+      pair_list_.push_back(std::make_pair(*(*a.object)->attributes, *(*a.object)->indices));
+    }
+
+    virtual void visit(visitor::subject&)
+    {}
+    
+    pair_list_type pair_list_;
+    
+  } gv;
+
+  g1->accept(gv);
+  g2->accept(gv);
+
+  BOOST_CHECK(gv.pair_list_[0]. first.size() == gv.pair_list_[1]. first.size());
+  BOOST_CHECK(gv.pair_list_[0].second.size() == gv.pair_list_[1].second.size());
+
+  for (unsigned i(0); i < gv.pair_list_[0].first.size(); ++i) {
+    BOOST_CHECK(gv.pair_list_[0].first[i].position == gv.pair_list_[1].first[i].position);
+    BOOST_TEST_MESSAGE(i << ':'
+                       << gv.pair_list_[0].first[i].position << ':'
+                       << gv.pair_list_[1].first[i].position);
+  }
+  
+  for (unsigned i(0); i < gv.pair_list_[0].second.size(); ++i) {
+    BOOST_CHECK(gv.pair_list_[0].second[i] == gv.pair_list_[1].second[i]);
+    BOOST_TEST_MESSAGE(i << ':'
+                       << gv.pair_list_[0].second[i] << ':'
+                       << gv.pair_list_[1].second[i]);
+  }
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_file)
@@ -140,6 +254,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_file)
   static std::array<std::string const, 19> const file_names = {
     {
       "/buddha/buddha.obj",
+#if 1
       "/conference/conference.obj",
       "/cornell-box/CornellBox-Empty-CO.obj",
       "/cornell-box/CornellBox-Empty-RG.obj",
@@ -158,6 +273,7 @@ BOOST_AUTO_TEST_CASE(test_hugh_scene_loader_obj_file)
       "/sibenik/sibenik.obj",
       "/sportscar/sportsCar.obj",
       "/teapot/teapot.obj",
+#endif
     }
   };
   static std::string const prefix(std::string(CMAKE_INSTALL_PREFIX) + "/share/hugh/data/mcguire");
