@@ -116,7 +116,7 @@ namespace hugh {
             auto const found(std::find(children_list_.begin(), children_list_.end(), a));
 
             if (children_list_.end() == found) {
-              children_list_.push_back(a);
+              children_list_.insert(children_list_.end(), a);
               {
                 group* p(dynamic_cast<group*>(a->parent_));
           

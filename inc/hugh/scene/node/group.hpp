@@ -19,11 +19,13 @@
 // includes, system
 
 #include <boost/intrusive_ptr.hpp> // boost::intrusive_ptr<>
+// #include <unordered_set>
 
 // includes, project
 
 #include <hugh/field/adapter/multi.hpp>
 #include <hugh/scene/node/base.hpp>
+#include <hugh/support/hasher.hpp>
 
 namespace hugh {
   
@@ -38,7 +40,9 @@ namespace hugh {
       public:
 
         using subject_inherited   = base;
-        using children_field_type = field::adapter::multi<boost::intrusive_ptr<base>>;
+        using children_field_type =
+          field::adapter::multi<boost::intrusive_ptr<base>,
+                                std::unordered_multiset<boost::intrusive_ptr<base>>>;
       
         children_field_type children; //< children
 
