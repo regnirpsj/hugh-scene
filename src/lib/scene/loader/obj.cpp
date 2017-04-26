@@ -2,7 +2,7 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2016 University of Hull                                                          */
+/* Copyright (C) 2016-2017 University of Hull                                                     */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
@@ -60,7 +60,7 @@
 
 #if defined(HUGH_USE_TRACE)
 #  include <boost/fusion/include/io.hpp>
-#  include <hugh/support/io_utils.hpp>
+#  include <hugh/support/io.hpp>
 #endif
 
 // internal unnamed namespace

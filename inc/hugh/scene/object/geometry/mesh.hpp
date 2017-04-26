@@ -43,7 +43,11 @@ namespace hugh {
       
           explicit mesh(attribute_list_type const& /* attributes */,
                         index_list_type const&     /* indices    */);
-      
+
+        protected:
+
+          void remove_duplicates();
+          
         };
     
         // variables, exported (extern)

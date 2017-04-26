@@ -2,7 +2,7 @@
 
 /**************************************************************************************************/
 /*                                                                                                */
-/* Copyright (C) 2016 University of Hull                                                          */
+/* Copyright (C) 2016-2017 University of Hull                                                     */
 /*                                                                                                */
 /**************************************************************************************************/
 /*                                                                                                */
@@ -26,7 +26,7 @@
 
 #include <hugh/scene/file.hpp>
 #include <hugh/scene/node/transform.hpp>
-#include <hugh/support/io_utils.hpp>
+#include <hugh/support/io.hpp>
 
 #define HUGH_USE_TRACE
 //#undef HUGH_USE_TRACE
